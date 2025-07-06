@@ -6,7 +6,7 @@ function gridFill() {
         grid.innerHTML += `<tr id="grid-row-${i}"></tr>`;
         let gridRow = document.getElementById("grid-row-"+i);
         for (let j=0; j<size; j++) {
-            gridRow.innerHTML += "<td>Hi</td>";
+            gridRow.innerHTML += "<td></td>";
         }
     }
 }
