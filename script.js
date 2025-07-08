@@ -10,6 +10,8 @@ function updateGrid() {
         for (let j=0; j<size; j++) {
             if (i === y && j === x) {
                 gridRow.innerHTML += "<td class='sq-rook'></td>";
+            } else if (Math.random() > 0.5) {
+                gridRow.innerHTML += "<td class='sq-dot'></td>";
             } else {
                 gridRow.innerHTML += "<td></td>";
             }
