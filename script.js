@@ -11,9 +11,11 @@ function generate(size, moves) {
         }
         state.push(stateRow);
     }
-    let start = [r(size), r(size)];
-    state[start[1], start[0]] = "#";
-    let current = [start[0], start[1]];
+    let start = {x:r(size), y:r(size)};
+    state[start.y][start.x] = "#";
+    let current = {x:start.x,y:start.y};
+    let new = [0,0];
+    let filled = [[start.x], [start.y]];
 
 
     return state;
