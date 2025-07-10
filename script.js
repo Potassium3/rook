@@ -11,16 +11,28 @@ function generate(size, moves) {
         }
         state.push(stateRow);
     }
-    let start = {x:r(size), y:r(size)};
-    state[start.y][start.x] = "#";
-    let sqCurrent = {x:start.x,y:start.y};
+    let sqStart = {x:r(size), y:r(size)};
+    state[sqStart.y][sqStart.x] = "#";
+    let sqCurrent = {x:sqStart.x,y:sqStart.y};
     let sqNew = {x:0,y:0};
-    let filled = [[start.x, start.y]];
+    let filled = {x:[sqStart.x], y:[sqStart.y]};
     for (let i=0; i<moves; i++) {
         sqNew.x = sqCurrent.x;
         sqNew.y = sqCurrent.y;
         if (i % 2 === 0) {
+            while (filled.x.includes(sqNew.x)) {
+                sqNew.x = r(size);
+            }
+            filled.x.push(sqNew.x);
+        } else {
+            while (filled.y.includes(sqNew.y)) {
+                sqNew.y = r(size);
+            }
+            filled.y.push(sqNew.y);
         }
+        sqCurrent.x = sqNew.x;
+        sqCurrent.y = sqNew.y;
+        state[sqCurrent.y][sqCurrent.x] = "o";
     }
 
     return state;
@@ -29,8 +41,6 @@ function generate(size, moves) {
 function updateGrid(state) {
     const grid = document.getElementById("js-grid-fill")
     const size = state.length;
-    let x = 0;
-    let y = 5;
     grid.innerHTML = "";
     for (let i=0; i<size; i++) {
         grid.innerHTML += `<tr id="grid-row-${i}"></tr>`;
@@ -46,5 +56,6 @@ function updateGrid(state) {
         }
     }
 }
-let puzzle = generate(5, 8);
+let puzzle = generate(10, 16);
+
 updateGrid(puzzle);
