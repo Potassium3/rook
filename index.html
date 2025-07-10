@@ -8,10 +8,10 @@
     <style>
         body {
             margin: 0;
-            --theme: #748d92;
-            --theme-2: #d3d9b4;
+            --theme: #C4F5AC;
+            --theme-2: #C4F5AC;
             --theme-3: #124e66;
-            background-color: var(--theme-2);
+            background-color: var(--theme-3);
         }
         header {
             position: sticky;
@@ -38,6 +38,7 @@
             aspect-ratio: 1;
             margin: 20px auto;
             border-collapse: separate;
+            padding: 0;
         }
         tbody {
             width: 100%;
@@ -45,6 +46,9 @@
             display: flex;
             flex-direction: column;
             background-color: var(--theme);
+            border: 5px solid white;
+            border-radius: 10px;
+            overflow: hidden;
         }
         tr {
             width: 100%;
@@ -58,10 +62,10 @@
             padding: 0;
         }
         tr:not(:first-child) {
-            border-top: 1px solid black;
+            border-top: 2px solid white;
         }
         td:not(:first-child) {
-            border-left: 1px solid black;
+            border-left: 2px solid white;
         }
         td.sq-rook {
             background-image: url("rook-puzzle-2.svg");
