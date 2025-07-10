@@ -13,10 +13,15 @@ function generate(size, moves) {
     }
     let start = {x:r(size), y:r(size)};
     state[start.y][start.x] = "#";
-    let current = {x:start.x,y:start.y};
-    let new = [0,0];
-    let filled = [[start.x], [start.y]];
-
+    let sqCurrent = {x:start.x,y:start.y};
+    let sqNew = {x:0,y:0};
+    let filled = [[start.x, start.y]];
+    for (let i=0; i<moves; i++) {
+        sqNew.x = sqCurrent.x;
+        sqNew.y = sqCurrent.y;
+        if (i % 2 === 0) {
+        }
+    }
 
     return state;
 }
