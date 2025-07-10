@@ -1,3 +1,24 @@
+function r(n) {
+    return Math.floor(Math.random()*n)
+}
+
+function generate(size, moves) {
+    let state = [];
+    for (let i=0; i<size; i++) {
+        let stateRow = [];
+        for (let j=0; j<size; j++) {
+            stateRow.push(".");
+        }
+        state.push(stateRow);
+    }
+    let start = [r(size), r(size)];
+    state[start[1], start[0]] = "#";
+    let current = [start[0], start[1]];
+
+
+    return state;
+}
+
 function updateGrid(state) {
     const grid = document.getElementById("js-grid-fill")
     const size = state.length;
@@ -18,10 +39,5 @@ function updateGrid(state) {
         }
     }
 }
-updateGrid([
-    ".o.o.",
-    "o.o.#",
-    "o.o..",
-    "o.o..",
-    "o..o.",
-]);
+let puzzle = generate(5, 8);
+updateGrid(puzzle);
