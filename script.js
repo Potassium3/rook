@@ -1,6 +1,6 @@
-function updateGrid() {
+function updateGrid(state) {
     const grid = document.getElementById("js-grid-fill")
-    const size = 10;
+    const size = state.length;
     let x = 0;
     let y = 5;
     grid.innerHTML = "";
@@ -8,9 +8,9 @@ function updateGrid() {
         grid.innerHTML += `<tr id="grid-row-${i}"></tr>`;
         let gridRow = document.getElementById("grid-row-"+i);
         for (let j=0; j<size; j++) {
-            if (i === y && j === x) {
+            if (state[i][j] === "#") {
                 gridRow.innerHTML += "<td class='sq-rook'></td>";
-            } else if (Math.random() > 0.5) {
+            } else if (state[i][j] === "o") {
                 gridRow.innerHTML += "<td class='sq-dot'></td>";
             } else {
                 gridRow.innerHTML += "<td></td>";
@@ -18,4 +18,10 @@ function updateGrid() {
         }
     }
 }
-updateGrid();
+updateGrid([
+    ".o.o.",
+    "o.o.#",
+    "o.o..",
+    "o.o..",
+    "o..o.",
+]);
