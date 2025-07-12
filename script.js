@@ -46,12 +46,13 @@ function updateGrid(state) {
         grid.innerHTML += `<tr id="grid-row-${i}"></tr>`;
         let gridRow = document.getElementById("grid-row-"+i);
         for (let j=0; j<size; j++) {
+            let sqClass = ((i+j)%2===0) ? "sq-0" : "sq-1";
             if (state[i][j] === "#") {
-                gridRow.innerHTML += "<td class='sq-rook'></td>";
+                gridRow.innerHTML += `<td class='sq-rook ${sqClass}'></td>`;
             } else if (state[i][j] === "o") {
-                gridRow.innerHTML += "<td class='sq-dot'></td>";
+                gridRow.innerHTML += `<td class='sq-dot ${sqClass}'></td>`;
             } else {
-                gridRow.innerHTML += "<td></td>";
+                gridRow.innerHTML += `<td></td>`;
             }
         }
     }
