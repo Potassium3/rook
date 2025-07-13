@@ -6,6 +6,9 @@
     <title>Rook Puzzle</title>
     <link rel="icon" href="rook-puzzle-2.svg">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             --theme: #C4F5AC;
@@ -80,7 +83,7 @@
             border-left: 2px solid white;
         }
         td.sq-rook {
-            background-image: url("rook-puzzle-2.svg");
+            background-image: url("rook-puzzle-rook.svg");
             background-size: 70%;
             background-repeat: no-repeat;
             background-position: center;
@@ -108,6 +111,9 @@
         }
         div.arrow {
             position: absolute;
+        }
+        div.arrow:hover {
+            background-color: white;
         }
         div.arrow-left {
             width: 50%;
@@ -149,6 +155,23 @@
             cursor: pointer;
             transform: translateY(2px);
         }
+        div.arrow-left {
+            padding-top: calc(50% - 17.5px);
+            padding-left: calc(25% - 17.5px);
+        }
+        div.arrow-right {
+            padding-top: calc(50% - 17.5px);
+            padding-left: calc(25% - 17.5px);
+        }
+        div.arrow-up {
+            padding-top: calc(25% - 17.5px);
+            padding-left: calc(50% - 17.5px);
+        }
+        div.arrow-down {
+            padding-top: calc(25% - 17.5px);
+            padding-left: calc(50% - 17.5px);
+        }
+
         div.menu-back-cover {
             position: fixed;
             top: 0;
@@ -186,10 +209,27 @@
             height: 35px;
         }
         .icon-rook {
-            background-image: url("rook-puzzle-2.svg");
+            background-image: url("rook-puzzle-rook.svg");
             background-size: contain;
             cursor: pointer;
             margin-right: 20px;
+        }
+        .icon-arrow {
+            background-image: url("rook-puzzle-arrow.svg");
+            background-size: contain;
+            cursor: pointer;
+        }
+        .icon-arrow-left {
+            background-position: rotate(0deg);
+        }
+        .icon-arrow-right {
+            transform: rotate(180deg);
+        }
+        .icon-arrow-up {
+            transform: rotate(90deg);
+        }
+        .icon-arrow-down {
+            transform: rotate(270deg);
         }
     </style>
 </head>
@@ -204,10 +244,18 @@
             </tbody>
         </table>
         <div class="arrows">
-            <div class="arrow arrow-left" onclick="sqClick(0, 0)"></div>
-            <div class="arrow arrow-right" onclick="sqClick(0, 1)"></div>
-            <div class="arrow arrow-up" onclick="sqClick(1, 0)"></div>
-            <div class="arrow arrow-down" onclick="sqClick(1, 1)"></div>
+            <div class="arrow arrow-left">
+                <div class="icon icon-arrow icon-arrow-left"></div>
+            </div>
+            <div class="arrow arrow-right">
+                <div class="icon icon-arrow icon-arrow-right"></div>
+            </div>
+            <div class="arrow arrow-up">
+                <div class="icon icon-arrow icon-arrow-up"></div>
+            </div>
+            <div class="arrow arrow-down">
+                <div class="icon icon-arrow icon-arrow-down"></div>
+            </div>
         </div>
     </main>
     <div class="menu-back-cover"></div>
