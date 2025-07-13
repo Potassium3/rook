@@ -48,11 +48,11 @@ function updateGrid(state) {
         for (let j=0; j<size; j++) {
             let sqClass = ((i+j)%2===0) ? "sq-0" : "sq-1";
             if (state[i][j] === "#") {
-                gridRow.innerHTML += `<td class='sq-rook ${sqClass}'></td>`;
+                gridRow.innerHTML += `<td class='sq-rook ${sqClass}' onclick='sqClick(${i},${j})'></td>`;
             } else if (state[i][j] === "o") {
-                gridRow.innerHTML += `<td class='sq-dot ${sqClass}'></td>`;
+                gridRow.innerHTML += `<td class='sq-dot ${sqClass}' onclick='sqClick(${i},${j})'></td>`;
             } else {
-                gridRow.innerHTML += `<td></td>`;
+                gridRow.innerHTML += `<td class='${sqClass}' onclick='sqClick(${i},${j})'></td>`;
             }
         }
     }
