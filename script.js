@@ -2,6 +2,103 @@ function r(n) {
     return Math.floor(Math.random()*n)
 }
 
+function inspectRkMove(state, size, x, y) {
+    let newState = state.filter((_) => true);
+    //newState[y][x] = "."; // Capture the dot
+    let endpoints = [];
+    found = false;
+    for (let checkX=0; checkX<size; checkX++) {
+        if (newState[y][checkX] === "o") {
+            // Found a movable-to dot
+            found = true;
+            let xEndpoints = inspectRkMove(newState, size, checkX, y);
+            for (let endpoint of xEndpoints) {
+                endpoints.push(endpoint);
+            }
+        }
+    }
+    for (let checkY=0; checkY<size; checkY++) {
+        if (newState[checkY][x] === "o") {
+            // Found a movable-to dot
+            found = true;
+            let yEndpoints = inspectRkMove(newState, size, x, checkY);
+            for (let endpoint of yEndpoints) {
+                endpoints.push(endpoint);
+            }
+        }
+    }
+    if (!found) {
+        // If no other movable-to dots were found, this is an endpoint
+        endpoints.push[[x, y]]
+    }
+    return endpoints;
+}
+
+function calcEndpoints(state, size) {
+    let x, y;
+    for (let i=0; i<size; i++) {
+        for (let j=0; j<size; j++) {
+            if (state[i][j] === "#") {
+                x = j;
+                y = i;
+                break;
+            }
+        }
+    }
+    return inspectRkMove(state, size, x, y);
+}
+
+function rkMove(state, count, size, x, y, sqs=[], noX=[], noY=[]) {
+    let newState = state;
+    let newX = x, newY = y;
+    while (true) {
+        if (r(2) >= 1) {
+            newX = r(size);
+        } else {
+            newY = r(size);
+        }
+        if (!sqs.includes([newX, newY]) && !noX.includes(newX) && !noY.includes(newY)) {
+            break;
+        }
+    }
+    if (sqs.some((coord) => coord[0]===newX) || sqs.some((coord) => coord[1]===newY)) {
+        // If clashes with other dots detected
+        console.log("clash");
+        let c = calcEndpoints(newState, size);
+        if (c.filter((coord) => coord==[newX, newY]).length != 1) {
+            console.log(c);
+            console.log("Not equal to 1 endpoint on the current square, returning")
+            return newState, "failed";
+        }
+        let numEndpoints = c.length
+        if (numEndpoints === 1 && count <= 0) {
+            sqs.push([newX, newY]);
+            newState, result = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
+            newState[newY][newX] = "o";
+            return newState, result;
+        } else if (numEndpoints === 0) {
+            return newState, "failed";
+        } else {
+            for (let endpoint of c) {
+                if (endpoint != [newX, newY]) {
+                    noX.push(newX);
+                    noY.push(newY); // Disable columns of other possible endpoints.
+                    sqs.push([newX, newY]);
+                    newState, result = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
+                    newState[newY][newX] = "o";
+                    return newState, result;
+                }
+            }
+        }
+    } else {
+        console.log("no clash");
+    }
+    sqs.push([newX, newY]);
+    newState, result = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
+    newState[newY][newX] = "o";
+    return newState, result;
+}
+
 function generate(size, moves) {
     let state = [];
     for (let i=0; i<size; i++) {
@@ -11,30 +108,9 @@ function generate(size, moves) {
         }
         state.push(stateRow);
     }
-    let sqStart = {x:r(size), y:r(size)};
-    state[sqStart.y][sqStart.x] = "#";
-    let sqCurrent = {x:sqStart.x,y:sqStart.y};
-    let sqNew = {x:0,y:0};
-    let filled = {x:[sqStart.x], y:[sqStart.y]};
-    for (let i=0; i<moves; i++) {
-        sqNew.x = sqCurrent.x;
-        sqNew.y = sqCurrent.y;
-        if (i % 2 === 0) {
-            while (filled.x.includes(sqNew.x)) {
-                sqNew.x = r(size);
-            }
-            filled.x.push(sqNew.x);
-        } else {
-            while (filled.y.includes(sqNew.y)) {
-                sqNew.y = r(size);
-            }
-            filled.y.push(sqNew.y);
-        }
-        sqCurrent.x = sqNew.x;
-        sqCurrent.y = sqNew.y;
-        state[sqCurrent.y][sqCurrent.x] = "o";
-    }
-
+    state[0][0] = "#"
+    let test;
+    state, test = rkMove(state, 3, size, 0, 0, [0, 0]);
     return state;
 }
 
@@ -58,5 +134,4 @@ function updateGrid(state) {
     }
 }
 let puzzle = generate(10, 16);
-
 updateGrid(puzzle);
