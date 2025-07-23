@@ -2,16 +2,27 @@ function r(n) {
     return Math.floor(Math.random()*n)
 }
 
-function inspectRkMove(state, size, x, y) {
-    let newState = state.filter((_) => true);
-    //newState[y][x] = "."; // Capture the dot
+function inspectRkMove(state, size, dotsToGo, x, y) {
+    if (dotsToGo < 0 || x < 0 || y < 0 || x >= size || y >= size) {
+        console.error("out");
+        return [];
+    }
+    let newState = [];
+    for (let r of state) {
+        let newStateRow = []
+        for (let sq of r) {
+            newStateRow.push(sq);
+        }
+        newState.push(newStateRow);
+    }
+    newState[y][x] = "."; // Capture the dot
     let endpoints = [];
     found = false;
     for (let checkX=0; checkX<size; checkX++) {
         if (newState[y][checkX] === "o") {
             // Found a movable-to dot
+            let xEndpoints = inspectRkMove(newState, size, dotsToGo-1, checkX, y);
             found = true;
-            let xEndpoints = inspectRkMove(newState, size, checkX, y);
             for (let endpoint of xEndpoints) {
                 endpoints.push(endpoint);
             }
@@ -20,32 +31,34 @@ function inspectRkMove(state, size, x, y) {
     for (let checkY=0; checkY<size; checkY++) {
         if (newState[checkY][x] === "o") {
             // Found a movable-to dot
+            let yEndpoints = inspectRkMove(newState, size, dotsToGo-1, x, checkY);
             found = true;
-            let yEndpoints = inspectRkMove(newState, size, x, checkY);
             for (let endpoint of yEndpoints) {
                 endpoints.push(endpoint);
             }
         }
     }
-    if (!found) {
+    if (!found && dotsToGo<=0) {
         // If no other movable-to dots were found, this is an endpoint
-        endpoints.push[[x, y]]
+        endpoints.push([x, y]);
     }
     return endpoints;
 }
 
 function calcEndpoints(state, size) {
     let x, y;
+    let dotsToFind = 0;
     for (let i=0; i<size; i++) {
         for (let j=0; j<size; j++) {
             if (state[i][j] === "#") {
                 x = j;
                 y = i;
-                break;
+            } else if (state[i][j] === "o") {
+                dotsToFind++;
             }
         }
     }
-    return inspectRkMove(state, size, x, y);
+    return inspectRkMove(state, size, dotsToFind, x, y);
 }
 
 function rkMove(state, count, size, x, y, sqs=[], noX=[], noY=[]) {
@@ -57,7 +70,7 @@ function rkMove(state, count, size, x, y, sqs=[], noX=[], noY=[]) {
         } else {
             newY = r(size);
         }
-        if (!sqs.includes([newX, newY]) && !noX.includes(newX) && !noY.includes(newY)) {
+        if (!sqs.some((coord) => coord[0]===newX&&coord[1]===newY) && !noX.includes(newX) && !noY.includes(newY)) {
             break;
         }
     }
@@ -65,28 +78,29 @@ function rkMove(state, count, size, x, y, sqs=[], noX=[], noY=[]) {
         // If clashes with other dots detected
         console.log("clash");
         let c = calcEndpoints(newState, size);
-        if (c.filter((coord) => coord==[newX, newY]).length != 1) {
-            console.log(c);
-            console.log("Not equal to 1 endpoint on the current square, returning")
-            return newState, "failed";
+        if (c.filter((coord) => coord[0]==x && coord[1]==y).length != 1) {
+            // Not equal to 1 endpoint on the current square, returning...
+            return [newState, "failed", []];
         }
-        let numEndpoints = c.length
-        if (numEndpoints === 1 && count <= 0) {
+        let numEndpoints = c.length;
+        if (numEndpoints === 1) {
+            // 1 endpoint
             sqs.push([newX, newY]);
-            newState, result = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
             newState[newY][newX] = "o";
-            return newState, result;
+            return [newState, "success", [[newX, newY]]];
+            // If there's 1 endpoint (hooray)
         } else if (numEndpoints === 0) {
-            return newState, "failed";
+            console.log("0 endpoints??????");
+            return [newState, "failed", []];
+            // If there are 0 endpoints (impossible)
         } else {
+            // Rule out rows and columns of other endpoints
             for (let endpoint of c) {
-                if (endpoint != [newX, newY]) {
+                if (endpoint[0] != newX) {
                     noX.push(newX);
-                    noY.push(newY); // Disable columns of other possible endpoints.
-                    sqs.push([newX, newY]);
-                    newState, result = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
-                    newState[newY][newX] = "o";
-                    return newState, result;
+                }
+                if (endpoint[1] != newY) {
+                    noY.push(newY);
                 }
             }
         }
@@ -94,9 +108,19 @@ function rkMove(state, count, size, x, y, sqs=[], noX=[], noY=[]) {
         console.log("no clash");
     }
     sqs.push([newX, newY]);
-    newState, result = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
-    newState[newY][newX] = "o";
-    return newState, result;
+    returned = rkMove(newState, count-1, size, newX, newY, sqs, noX, noY);
+    let result, solution;
+    state = returned[0];
+    result = returned[1];
+    solution = returned[2];
+    if (result == "success") {
+        solution.push([newX, newY]);
+        return [newState, "success", solution];
+    } else {
+        console.log("failed, looping round again")
+    }
+    // Loop around again
+    return [newState, "failed", []]
 }
 
 function generate(size, moves) {
@@ -108,9 +132,13 @@ function generate(size, moves) {
         }
         state.push(stateRow);
     }
-    state[0][0] = "#"
-    let test;
-    state, test = rkMove(state, 3, size, 0, 0, [0, 0]);
+    state[5][0] = "#";
+    returned = rkMove(state, 6, size, 0, 5, [[0, 0]]);
+    let test, solution;
+    state = returned[0];
+    test = returned[1];
+    solution = returned[2];
+    console.log("result:"+test);
     return state;
 }
 
