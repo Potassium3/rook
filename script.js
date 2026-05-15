@@ -1,6 +1,6 @@
 function renderPuzzle(puzzle) {
     let mainPuzzle = document.getElementById("main-puzzle");
-    let size = 10;
+    let size = puzzle.size;
     let html = "";
 
     // Background grid
@@ -15,13 +15,28 @@ function renderPuzzle(puzzle) {
     html += "</div>";
 
     // Rook and other elements
-
-    html += "<div class='puzzle-rook' style='top:0;left:0;width:20px;'></div>"
-
+    for (let i=0; i<puzzle.pieces.length; i++) {
+        let pos = puzzle.pieces[i]
+        html += `<div class='puzzle-rook' style='top:${(pos[0]+0.5)*100/size}%;left:${(pos[1]+0.5)*100/size}%;'></div>`
+    }
 
     mainPuzzle.innerHTML = html;
 }
 
-let puzzle;
+function r(n) {
+    return Math.floor(Math.random()*n)
+}
+
+let size = 10;
+let puzzle = {
+    size: size,
+    pieces: [],
+    rook: []
+};
+let pieces = 5;
+
+for (let i=0; i<pieces; i++) {
+    puzzle.pieces.push([r(size), r(size)])
+}
 
 renderPuzzle(puzzle)

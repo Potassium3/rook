@@ -24,6 +24,17 @@ h1 {
     color: black;
 }
 
+h2 {
+    margin: 0;
+    line-height: 40px;
+    height: 60px;
+    padding: 10px 0;
+    font-size: 1.7rem;
+    font-weight: 500;
+    font-family: 'Zilla Slab', Georgia, 'Times New Roman', Times, serif;
+    color: black;
+}
+
 p, a {
     margin: 0;
     line-height: 20px;
@@ -90,12 +101,14 @@ body:has(#rewards:target) #nav-rewards-underscore {
     left: 0;
 }
 
+/* Table of puzzle */
+
 #main-puzzle {
     display: block;
     position: relative;
+    overflow: hidden;
     aspect-ratio: 1;
-    width: 400px;
-    max-width: calc(100% - 20px);
+    width: min(400px, calc(100% - 20px));
     margin: auto;
     margin-top: 10px;
     border: 2px solid var(--gray);
@@ -104,15 +117,16 @@ body:has(#rewards:target) #nav-rewards-underscore {
 }
 
 body:not(:has(:target)) #main-puzzle {
-    width: 100px;
+    width: min(100px, calc(100% - 20px));
+    border: none;
 }
 
 body:has(#learn:target) #main-puzzle {
-    width: 400px;
+    width: min(400px, calc(100% - 20px));
 }
 
 body:has(#puzzle:target) #main-puzzle {
-    width: 400px;
+    width: min(400px, calc(100% - 20px));
 }
 
 body:has(#rewards:target) #main-puzzle {
@@ -158,10 +172,11 @@ body:has(#learn:target) .puzzle-cell:not(:first-child) {
 .puzzle-rook {
     position: absolute;
     background-color: var(--red-3);
-    min-width: 5px;
+    width: 5%;
     aspect-ratio: 1;
     border-radius: 100%;
     z-index: 3;
+    transform: translate(-50%, -50%);
 }
 
 /* Table of controls */
@@ -176,6 +191,22 @@ body:has(#learn:target) .puzzle-cell:not(:first-child) {
     flex-direction: column;
 }
 
+body:not(:has(:target)) #main-controls {
+    display: none;
+}
+
+body:has(#learn:target) #main-controls {
+    display: none;
+}
+
+body:has(#puzzle:target) #main-controls {
+    display: flex;
+}
+
+body:has(#rewards:target) #main-controls {
+    display: none;
+}
+
 .main-controls-row {
     flex-grow: 1;
     display: flex;
@@ -185,6 +216,19 @@ body:has(#learn:target) .puzzle-cell:not(:first-child) {
 .main-controls-cell {
     position: relative;
     flex-grow: 1;
+}
+
+/* Home message */
+
+#main-feedback {
+    display: none;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+body:not(:has(:target)) #main-feedback {
+    display: block;
 }
 
 /* Buttons and controls */
