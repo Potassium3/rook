@@ -17,11 +17,16 @@ function renderPuzzle(puzzle) {
     // Rook and other elements
     for (let i=0; i<puzzle.pieces.length; i++) {
         let pos = puzzle.pieces[i]
-        html += `<div class='puzzle-rook' style='top:${(pos[0]+0.5)*100/size}%;left:${(pos[1]+0.5)*100/size}%;'></div>`
+        html += `<div class='puzzle-piece' style='top:${(pos[0]+0.5)*100/size}%;left:${(pos[1]+0.5)*100/size}%;'></div>`
     }
+
+    let rookPos = puzzle.rook
+    html += `<div class='puzzle-rook' style='top:${(rookPos[0]+0.5)*100/size}%;left:${(rookPos[1]+0.5)*100/size}%;'></div>`
 
     mainPuzzle.innerHTML = html;
 }
+
+// Generating a puzzle (crude placeholder)
 
 function r(n) {
     return Math.floor(Math.random()*n)
@@ -36,7 +41,8 @@ let puzzle = {
 let pieces = 5;
 
 for (let i=0; i<pieces; i++) {
-    puzzle.pieces.push([r(size), r(size)])
+    puzzle.pieces.push([r(size), r(size)]);
 }
+puzzle.rook = [r(size), r(size)];
 
-renderPuzzle(puzzle)
+renderPuzzle(puzzle);

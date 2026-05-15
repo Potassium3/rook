@@ -25,27 +25,48 @@ h1 {
 }
 
 h2 {
-    margin: 0;
+    margin: 10px 0 0;
     line-height: 40px;
-    height: 60px;
-    padding: 10px 0;
+    padding: 0;
     font-size: 1.7rem;
     font-weight: 500;
     font-family: 'Zilla Slab', Georgia, 'Times New Roman', Times, serif;
     color: black;
 }
 
-p, a {
-    margin: 0;
+button, a.button {
     line-height: 20px;
-    height: 20px;
-    margin: 0;
+    height: 40px;
     font-size: 1rem;
     font-weight: 300;
     font-family: Poppins, Helvetica, sans-serif;
     color: black;
     text-decoration: none;
+    margin: 10px 0 0;
 }
+
+p {
+    line-height: 20px;
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: Poppins, Helvetica, sans-serif;
+    color: black;
+    text-decoration: none;
+    margin: 5px 0 0;
+}
+
+a {
+    line-height: 20px;
+    height: 20px;
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: Poppins, Helvetica, sans-serif;
+    color: black;
+    text-decoration: none;
+    margin: 0;
+}
+
+/* Header and nav */
 
 header {
     position: sticky;
@@ -70,6 +91,7 @@ nav>a {
 }
 
 nav>a>div {
+    /* Underscore element for each link */
     width: 0%;
     position: absolute;
     background-color: var(--red-3);
@@ -169,6 +191,16 @@ body:has(#learn:target) .puzzle-cell:not(:first-child) {
 
 /* Puzzle elements */
 
+.puzzle-piece {
+    position: absolute;
+    border: 3px solid var(--red-3);
+    width: 5%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+}
+
 .puzzle-rook {
     position: absolute;
     background-color: var(--red-3);
@@ -222,9 +254,10 @@ body:has(#rewards:target) #main-controls {
 
 #main-feedback {
     display: none;
-    width: 100%;
     height: fit-content;
+    width: 100%;
     text-align: center;
+    padding: 0 10px; /* Padding on sides so content is nicely centred */
 }
 
 body:not(:has(:target)) #main-feedback {
@@ -235,12 +268,12 @@ body:not(:has(:target)) #main-feedback {
 
 .button {
     background-color: var(--red-0);
-    color: black;
     border: none;
     border-radius: 2px;
 }
 
 .button-small {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -248,4 +281,14 @@ body:not(:has(:target)) #main-feedback {
     height: 40px;
     cursor: pointer;
     margin: 0;
+}
+
+.button-big {
+    display: flex;
+    justify-self: center;
+    margin: auto;
+    width: fit-content;
+    height: 40px;
+    cursor: pointer;
+    padding: 10px;
 }
