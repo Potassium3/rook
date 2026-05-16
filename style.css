@@ -194,17 +194,19 @@ body:has(#learn:target) .puzzle-cell:not(:first-child) {
 .puzzle-piece {
     position: absolute;
     border: 3px solid var(--red-3);
-    width: 5%;
+    width: 8%;
     aspect-ratio: 1;
     border-radius: 100%;
     z-index: 3;
     transform: translate(-50%, -50%);
+    cursor: pointer;
 }
 
 .puzzle-rook {
     position: absolute;
+    border: 3px solid var(--red-3);
     background-color: var(--red-3);
-    width: 5%;
+    width: 8%;
     aspect-ratio: 1;
     border-radius: 100%;
     z-index: 3;

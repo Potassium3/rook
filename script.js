@@ -20,7 +20,7 @@ function renderPuzzle(puzzle) {
         html += `<div class='puzzle-piece' style='top:${(pos[0]+0.5)*100/size}%;left:${(pos[1]+0.5)*100/size}%;'></div>`
     }
 
-    let rookPos = puzzle.rook
+    let rookPos = puzzle.rook[0]
     html += `<div class='puzzle-rook' style='top:${(rookPos[0]+0.5)*100/size}%;left:${(rookPos[1]+0.5)*100/size}%;'></div>`
 
     mainPuzzle.innerHTML = html;
@@ -32,17 +32,35 @@ function r(n) {
     return Math.floor(Math.random()*n)
 }
 
-let size = 10;
-let puzzle = {
-    size: size,
-    pieces: [],
-    rook: []
-};
-let pieces = 5;
-
-for (let i=0; i<pieces; i++) {
-    puzzle.pieces.push([r(size), r(size)]);
+function generatePuzzle(size, pieces, solutions) {
+    let puzzle = {
+        size: size,
+        pieces: [],
+        rook: []
+    }
+    let currentPos = [r(size), r(size)];
+    puzzle.rook = [currentPos];
+    for (let i=0; i<pieces; i++) {
+        if (i%2 == 0) {
+            let newY = currentPos[0];
+            while (newY == currentPos[0] || newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})) {
+                console.log(puzzle.pieces.some(function (pos){return pos[0] == newY}))
+                newY = r(size);
+            }
+            currentPos = [newY, currentPos[1]];
+        } else {
+            let newX = currentPos[1];
+            while (newX == currentPos[1] || newX == puzzle.rook[0][1] || puzzle.pieces.some(function (pos){return pos[1] == newX})) {
+                console.log(puzzle.pieces.some(function (pos){return pos[1] == newX}))
+                newX = r(size);
+            }
+            currentPos = [currentPos[0], newX];
+        }
+        console.log(currentPos);
+        puzzle.pieces.push(currentPos);
+    }
+    return puzzle;
 }
-puzzle.rook = [r(size), r(size)];
 
+let puzzle = generatePuzzle(8, 12, 1);
 renderPuzzle(puzzle);
