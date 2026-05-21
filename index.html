@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg" href="rook.svg">
     <title>The Rook Puzzle</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap" rel="stylesheet">
@@ -30,23 +31,25 @@
             <div class="main-controls-row">
                 <div class="main-controls-cell"></div>
                 <div class="main-controls-cell">
-                    <button class="button button-small"></button>
+                    <button class="button button-small button-control-up" onclick="puzzle = clickButton('up', puzzle); updatePuzzle(puzzle);"></button>
                 </div>
                 <div class="main-controls-cell"></div>
             </div>
             <div class="main-controls-row">
                 <div class="main-controls-cell">
-                    <button class="button button-small"></button>
+                    <button class="button button-small button-control-left" onclick="puzzle = clickButton('left', puzzle); updatePuzzle(puzzle);"></button>
                 </div>
-                <div class="main-controls-cell"></div>
                 <div class="main-controls-cell">
-                    <button class="button button-small"></button>
+                    <button class="button button-small button-control-back" onclick="puzzle = clickButton('back', puzzle); updatePuzzle(puzzle);"></button>
+                </div>
+                <div class="main-controls-cell">
+                    <button class="button button-small button-control-right" onclick="puzzle = clickButton('right', puzzle); updatePuzzle(puzzle);"></button>
                 </div>
             </div>
             <div class="main-controls-row">
                 <div class="main-controls-cell"></div>
                 <div class="main-controls-cell">
-                    <button class="button button-small"></button>
+                    <button class="button button-small button-control-down" onclick="puzzle = clickButton('down', puzzle); updatePuzzle(puzzle);"></button>
                 </div>
                 <div class="main-controls-cell"></div>
             </div>

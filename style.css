@@ -1,5 +1,6 @@
 :root {
     --red-0: #ffe9e4;
+    --red-2: #ce6f6f;
     --red-3: #d10f13;
     --gray: #d0d0d0;
 }
@@ -130,10 +131,10 @@ body:has(#rewards:target) #nav-rewards-underscore {
     position: relative;
     overflow: hidden;
     aspect-ratio: 1;
-    width: min(400px, calc(100% - 20px));
+    width: min(402px, calc(100% - 20px));
     margin: auto;
     margin-top: 10px;
-    border: 2px solid var(--gray);
+    border: 1px solid var(--gray);
     border-radius: 2px;
     transition: width 0.2s;
 }
@@ -144,11 +145,11 @@ body:not(:has(:target)) #main-puzzle {
 }
 
 body:has(#learn:target) #main-puzzle {
-    width: min(400px, calc(100% - 20px));
+    width: min(402px, calc(100% - 20px));
 }
 
 body:has(#puzzle:target) #main-puzzle {
-    width: min(400px, calc(100% - 20px));
+    width: min(402px, calc(100% - 20px));
 }
 
 body:has(#rewards:target) #main-puzzle {
@@ -173,44 +174,46 @@ body:has(#rewards:target) #main-puzzle {
     flex-direction: row;
     width: 100%;
     flex-grow: 1;
-}
-
-body:has(#puzzle:target) .puzzle-row:not(:first-child),
-body:has(#learn:target) .puzzle-row:not(:first-child) {
-    border-top: 2px solid var(--gray);
+    border: none;
 }
 
 .puzzle-cell {
     flex-grow: 1;
+    border: 1px solid transparent;
 }
 
-body:has(#puzzle:target) .puzzle-cell:not(:first-child),
-body:has(#learn:target) .puzzle-cell:not(:first-child) {
-    border-left: 2px solid var(--gray);
+body:has(#puzzle:target) .puzzle-cell,
+body:has(#learn:target) .puzzle-cell {
+    border: 1px solid var(--gray);
 }
 
 /* Puzzle elements */
 
 .puzzle-piece {
     position: absolute;
-    border: 3px solid var(--red-3);
-    width: 8%;
+    background-image: url(pawn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     aspect-ratio: 1;
-    border-radius: 100%;
     z-index: 3;
     transform: translate(-50%, -50%);
+    transition: width 0.2s; /* Pieces shrink when captured */
     cursor: pointer;
+    border-radius: 100%;
 }
 
 .puzzle-rook {
     position: absolute;
-    border: 3px solid var(--red-3);
-    background-color: var(--red-3);
-    width: 8%;
+    background-image: url(rook.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     aspect-ratio: 1;
-    border-radius: 100%;
     z-index: 3;
     transform: translate(-50%, -50%);
+    transition: top 0.2s, left 0.2s; /* Rook moves smoothly to pieces */
+    border-radius: 100%;
 }
 
 /* Table of controls */
@@ -269,7 +272,6 @@ body:not(:has(:target)) #main-feedback {
 /* Buttons and controls */
 
 .button {
-    background-color: var(--red-0);
     border: none;
     border-radius: 2px;
 }
@@ -283,6 +285,7 @@ body:not(:has(:target)) #main-feedback {
     height: 40px;
     cursor: pointer;
     margin: 0;
+    background-color: transparent;
 }
 
 .button-big {
@@ -293,4 +296,28 @@ body:not(:has(:target)) #main-feedback {
     height: 40px;
     cursor: pointer;
     padding: 10px;
+    background-color: var(--red-2);
+}
+
+.button-control-back {
+    background-image: url(icon-back.svg);
+}
+
+.button-control-left {
+    background-image: url(icon-left.svg);
+}
+
+.button-control-right {
+    background-image: url(icon-left.svg);
+    transform: rotate(180deg);
+}
+
+.button-control-up {
+    background-image: url(icon-left.svg);
+    transform: rotate(90deg);
+}
+
+.button-control-down {
+    background-image: url(icon-left.svg);
+    transform: rotate(270deg);
 }

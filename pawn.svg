@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <rect y="220" width="90" height="180" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;" x="205"/>
+  <rect x="190" width="120" height="60" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;" y="340"/>
+  <path d="M 370 400 L 250.003 400 C 250.003 366.863 276.865 340 310 340 C 343.137 340 370 366.863 370 400 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;"/>
+  <ellipse style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;" cx="250" cy="205" rx="75" ry="75"/>
+  <path d="M 250 400 L 130.003 400 C 130.003 366.863 156.865 340 190 340 C 223.137 340 250 366.863 250 400 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;"/>
+  <path d="M 325 299.199 L 265.003 299.199 C 265.003 282.632 278.433 269.2 295.001 269.2 C 311.569 269.2 325 282.632 325 299.199 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;"/>
+  <path d="M 234.997 269.201 L 175 269.201 C 175 285.768 188.43 299.2 204.998 299.2 C 221.566 299.2 234.997 285.768 234.997 269.201 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); transform-box: fill-box; transform-origin: 50% 50%; stroke-width: 12px;" transform="matrix(-1, 0, 0, -1, -0.000062, -0.00006)"/>
+  <rect x="211" y="220" width="78" height="174" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 0px;"/>
+</svg>
