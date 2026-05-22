@@ -236,28 +236,64 @@ body:not(:has(:target)) .puzzle-trail {
     background-color: var(--red-3);
 }
 
+@keyframes puzzle-trail-down {
+    0% {
+        transform: translate(-2px, -50%) scaleY(0);
+    } 100% {
+        transform: translate(-2px, 0) scaleY(100%);
+    }
+}
+
 .puzzle-trail-down {
     width: 4px;
     min-height: 5px;
     transform: translate(-2px, 0);
+    animation: puzzle-trail-down 0.2s forwards;
+}
+
+@keyframes puzzle-trail-up {
+    0% {
+        transform: translate(-2px, -50%) scaleY(0);
+    } 100% {
+        transform: translate(-2px, -100%) scaleY(100%);
+    }
 }
 
 .puzzle-trail-up {
     width: 4px;
     min-height: 5px;
     transform: translate(-2px, -100%);
+    animation: puzzle-trail-up 0.2s forwards;
+}
+
+@keyframes puzzle-trail-right {
+    0% {
+        transform: translate(-50%, -2px) scaleX(0);
+    } 100% {
+        transform: translate(0, -2px) scaleX(100%);
+    }
 }
 
 .puzzle-trail-right {
     height: 4px;
     min-width: 5px;
     transform: translate(0, -2px);
+    animation: puzzle-trail-right 0.2s forwards;
+}
+
+@keyframes puzzle-trail-left {
+    0% {
+        transform: translate(-50%, -2px) scaleX(0);
+    } 100% {
+        transform: translate(-100%, -2px) scaleX(100%);
+    }
 }
 
 .puzzle-trail-left {
     height: 4px;
     min-width: 5px;
     transform: translate(-100%, -2px);
+    animation: puzzle-trail-left 0.2s forwards;
 }
 
 /* Table of controls */

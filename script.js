@@ -75,7 +75,6 @@ function updatePuzzle(puzzle) {
                     } else {
                         direction = "left"
                     }
-                    newTrail.style.width = 0;
                     newTrail.style.width = `${(Math.abs(start[1]-end[1]))*100/size}%`;
                 } else {
                     if (start[0] < end[0]) {
@@ -83,7 +82,6 @@ function updatePuzzle(puzzle) {
                     } else {
                         direction = "up"
                     }
-                    newTrail.style.height = 0;
                     newTrail.style.height = `${(Math.abs(start[0]-end[0]))*100/size}%`;
                 }
                 newTrail.className = `puzzle-trail puzzle-trail-${direction}`;
@@ -119,7 +117,7 @@ function generatePuzzle(size, pieces, solutions) {
     for (let i=0; i<pieces; i++) {
         if (i%2 == 0) {
             let newY = currentPos[0];
-            while (newY == currentPos[0] || newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})) {
+            while (newY == currentPos[0] /*|| newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})*/) {
                 newY = r(size);
             }
             currentPos = [newY, currentPos[1]];
