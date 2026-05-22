@@ -15,23 +15,37 @@ function renderPuzzle(puzzle) {
         html += "</div>";
     }
     html += "</div>";
+    mainPuzzle.innerHTML = html;
 
-    // Puzzle pieces, rook and rook trail
+    // Initialising pieces
     for (let i=0; i<puzzle.pieces.length; i++) {
         let pos = puzzle.pieces[i]
-        html += `<div class='puzzle-piece' id='piece-${pos[0]}-${pos[1]}' style='
-            top:${(pos[0]+0.5)*100/size}%;
-            left:${(pos[1]+0.5)*100/size}%;
-            width:${100/size}%;'></div>`
+        let piece = document.createElement("div");
+        piece.className = "puzzle-piece";
+        piece.id = `piece-${pos[0]}-${pos[1]}`;
+        piece.style.top = `${(pos[0]+0.5)*100/size}%`;
+        piece.style.left = `${(pos[1]+0.5)*100/size}%`;
+        piece.style.width = `${100/size}%`;
+        mainPuzzle.appendChild(piece);
+        
+        // Clicking on a puzzle piece to move there
+        document.getElementById(`piece-${pos[0]}-${pos[1]}`).addEventListener("click", function() {
+            clickPiece(`${pos[0]}`, `${pos[1]}`);
+        })
     }
 
+    // Initialising rook
     let rookPos = puzzle.rook[puzzle.rook.length-1];
-    html += `<div class='puzzle-rook' id='rook' style='
-        top:${(rookPos[0]+0.5)*100/size}%;
-        left:${(rookPos[1]+0.5)*100/size}%;
-        width:${100/size}%;'></div>`
+    let rook = document.createElement("div");
+    rook.className = "puzzle-rook";
+    rook.id = "rook";
+    rook.style.top = `${(rookPos[0]+0.5)*100/size}%`;
+    rook.style.left = `${(rookPos[1]+0.5)*100/size}%`;
+    rook.style.width = `${100/size}%`
+    mainPuzzle.appendChild(rook);
 
-    mainPuzzle.innerHTML = html;
+    // Clicking on the rook to go back
+    document.getElementById("rook").addEventListener("click", clickRook);
 }
 
 // Function to update the puzzle grid by reusing the elements already there
@@ -195,6 +209,35 @@ function clickButton(button, puzzle) {
         }
     }
     return puzzle;
+}
+
+function clickPiece(y, x) {
+    // Uses the global puzzle
+    let rookPos = puzzle.rook[puzzle.rook.length-1]
+    if (x == rookPos[1]) {
+        // Vertical movement
+        if (y > rookPos[0]) {
+            clickButton("down", puzzle);
+        } else {
+            clickButton("up", puzzle);
+        }
+    } else if (y == rookPos[0]) {
+        // Horizontal movement
+        if (x > rookPos[1]) {
+            clickButton("right", puzzle);
+        } else {
+            clickButton("left", puzzle);
+        }
+    }
+    updatePuzzle(puzzle);
+}
+
+function clickRook() {
+    // Uses the global puzzle
+    if (puzzle.rook.length > 1) {
+        puzzle.rook.pop()
+    }
+    updatePuzzle(puzzle);
 }
 
 let puzzle = generatePuzzle(10, 13, 1);
