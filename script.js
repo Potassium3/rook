@@ -100,8 +100,7 @@ function updatePuzzle(puzzle) {
     console.log(puzzle);
 }
 
-// Generating a puzzle (crude placeholder)
-
+// Functions to generate a puzzle
 function r(n) {
     return Math.floor(Math.random()*n)
 }
@@ -117,7 +116,7 @@ function generatePuzzle(size, pieces, solutions) {
     for (let i=0; i<pieces; i++) {
         if (i%2 == 0) {
             let newY = currentPos[0];
-            while (newY == currentPos[0] /*|| newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})*/) {
+            while (newY == currentPos[0] || newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})) {
                 newY = r(size);
             }
             currentPos = [newY, currentPos[1]];
