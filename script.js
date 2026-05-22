@@ -39,11 +39,13 @@ function updatePuzzle(puzzle) {
     let mainPuzzle = document.getElementById("main-puzzle");
     let size = puzzle.size;
     let rookPos = puzzle.rook[puzzle.rook.length-1];
+
+    // Rook moves smoothly to next position
     document.getElementById("rook").style.top = `${(rookPos[0]+0.5)*100/size}%`;
     document.getElementById("rook").style.left = `${(rookPos[1]+0.5)*100/size}%`;
     document.getElementById("rook").style.width = `${100/size}%`;
-    // Rook moves smoothly to next position
     
+    // Pieces shrink smoothly when captured
     for (let i=0; i<puzzle.pieces.length; i++) {
         let piece = puzzle.pieces[i]
         if (puzzle.rook.some(function(coord) {return coord[0] == piece[0] && coord[1] == piece[1]})) {
@@ -53,6 +55,49 @@ function updatePuzzle(puzzle) {
             document.getElementById(`piece-${piece[0]}-${piece[1]}`).style.width = `${100/size}%`;
             // Recreate regurgitated pieces
         }
+    }
+
+    // Rook trail expands when moved
+    if (puzzle.rook.length > 1) {
+        for (let i=0; i<puzzle.rook.length-1; i++) { // Note -1 because .rook[i+1] is used
+            console.log("this is looping");
+            let start = puzzle.rook[i];
+            let end = puzzle.rook[i+1];
+            if (!mainPuzzle.contains(document.getElementById(`trail-${i}`))) {
+                let newTrail = document.createElement("div");
+                newTrail.id = `trail-${i}`;
+
+                let direction;
+                if (start[0] == end[0]) {
+                    // Y coord equal - moved horizontally
+                    if (start[1] < end[1]) {
+                        direction = "right"
+                    } else {
+                        direction = "left"
+                    }
+                    newTrail.style.width = 0;
+                    newTrail.style.width = `${(Math.abs(start[1]-end[1]))*100/size}%`;
+                } else {
+                    if (start[0] < end[0]) {
+                        direction = "down"
+                    } else {
+                        direction = "up"
+                    }
+                    newTrail.style.height = 0;
+                    newTrail.style.height = `${(Math.abs(start[0]-end[0]))*100/size}%`;
+                }
+                newTrail.className = `puzzle-trail puzzle-trail-${direction}`;
+                newTrail.style.top = `${(start[0]+0.5)*100/size}%`;
+                newTrail.style.left = `${(start[1]+0.5)*100/size}%`;
+                mainPuzzle.appendChild(newTrail);
+            }
+        }
+    }
+    // Rook trail retracts when moved back
+    let i = puzzle.rook.length-1;
+    while (mainPuzzle.contains(document.getElementById(`trail-${i}`))) {
+        document.getElementById(`trail-${i}`).remove();
+        i++;
     }
     console.log(puzzle);
 }
@@ -155,11 +200,7 @@ function clickButton(button, puzzle) {
     return puzzle;
 }
 
-//let puzzle = generatePuzzle(10, 12, 1);
-let puzzle = {
-    size: 3,
-    pieces: [[0,0], [0,1], [1,1], [0,2], [2,2]],
-    rook: [[1,0]]
-}
+let puzzle = generatePuzzle(10, 13, 1);
+
 console.log(puzzle);
 renderPuzzle(puzzle);

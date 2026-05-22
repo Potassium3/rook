@@ -203,6 +203,11 @@ body:has(#learn:target) .puzzle-cell {
     border-radius: 100%;
 }
 
+body:not(:has(:target)) .puzzle-piece {
+    background-image: none;
+    background-color: var(--red-3);
+}
+
 .puzzle-rook {
     position: absolute;
     background-image: url(rook.svg);
@@ -214,6 +219,45 @@ body:has(#learn:target) .puzzle-cell {
     transform: translate(-50%, -50%);
     transition: top 0.2s, left 0.2s; /* Rook moves smoothly to pieces */
     border-radius: 100%;
+}
+
+body:not(:has(:target)) .puzzle-rook {
+    background-image: none;
+    background-color: var(--red-3);
+}
+
+.puzzle-trail {
+    position: absolute;
+    background-color: var(--red-0);
+    transition: background-color 0.2s;
+}
+
+body:not(:has(:target)) .puzzle-trail {
+    background-color: var(--red-3);
+}
+
+.puzzle-trail-down {
+    width: 4px;
+    min-height: 5px;
+    transform: translate(-2px, 0);
+}
+
+.puzzle-trail-up {
+    width: 4px;
+    min-height: 5px;
+    transform: translate(-2px, -100%);
+}
+
+.puzzle-trail-right {
+    height: 4px;
+    min-width: 5px;
+    transform: translate(0, -2px);
+}
+
+.puzzle-trail-left {
+    height: 4px;
+    min-width: 5px;
+    transform: translate(-100%, -2px);
 }
 
 /* Table of controls */
