@@ -111,7 +111,9 @@ function updatePuzzle(puzzle) {
         document.getElementById(`trail-${i}`).remove();
         i++;
     }
-    console.log(puzzle);
+
+    // Save progress in rpu-progress (localStorage)
+    window.localStorage.setItem("rpu-progress", JSON.stringify(puzzle));
 }
 
 // Functions to generate a puzzle
@@ -236,11 +238,20 @@ function clickRook() {
     // Uses the global puzzle
     if (puzzle.rook.length > 1) {
         puzzle.rook.pop()
+        // Undo move
     }
     updatePuzzle(puzzle);
 }
 
 let puzzle = generatePuzzle(10, 13, 1);
-
-console.log(puzzle);
+/*let puzzle = {
+    size: 10,
+    pieces: [[0, 4], [4, 4], [0, 0], [0, 8], [8, 8]],
+    rook: [[4, 0]]
+}
+let savedPuzzle = window.localStorage.getItem("rpu-progress");
+if (savedPuzzle) {
+    puzzle = JSON.parse(savedPuzzle);
+}*/
 renderPuzzle(puzzle);
+updatePuzzle(puzzle);
