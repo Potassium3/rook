@@ -1,7 +1,7 @@
 :root {
     --red-0: #ffe9e4;
     --red-2: #ce6f6f;
-    --red-3: #d10f13;
+    --red-3: #700607;
     --gray: #d0d0d0;
 }
 
@@ -381,6 +381,17 @@ body:not(:has(:target)) #main-feedback {
 }
 
 body:has(#learn:target) #main-learn {
+    display: block;
+}
+
+/* Rewards page */
+
+#main-rewards {
+    display: none;
+    text-align: center;
+}
+
+body:has(#rewards:target) #main-rewards {
     display: block;
 }
 

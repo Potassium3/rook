@@ -74,7 +74,6 @@ function updatePuzzle(puzzle) {
     // Rook trail expands when moved
     if (puzzle.rook.length > 1) {
         for (let i=0; i<puzzle.rook.length-1; i++) { // Note -1 because .rook[i+1] is used
-            console.log("this is looping");
             let start = puzzle.rook[i];
             let end = puzzle.rook[i+1];
             if (!mainPuzzle.contains(document.getElementById(`trail-${i}`))) {
@@ -114,32 +113,48 @@ function updatePuzzle(puzzle) {
 
     // Save progress in rpu-progress (localStorage)
     window.localStorage.setItem("rpu-progress", JSON.stringify(puzzle));
+
+    // If puzzle has been completed
+    if (puzzle.rook.length == puzzle.pieces.length+1) {
+        console.log("Finished!");
+        window.location.href = "#";
+    }
 }
 
 // Functions to generate a puzzle
-function r(n) {
-    return Math.floor(Math.random()*n)
+function r(last) {
+    return 4*last*(1-last);
 }
 
-function generatePuzzle(size, pieces, solutions) {
+function generatePuzzle(size, pieces, solutions, randomKey) {
+    let currentKey = randomKey; // Pseudorandom start number
     let puzzle = {
         size: size,
         pieces: [],
-        rook: []
+        rook: [],
+        key: randomKey
     }
-    let currentPos = [r(size), r(size)];
+    let y = currentKey = r(currentKey);
+    let x = currentKey = r(currentKey);
+    let currentPos = [Math.floor(x*size), Math.floor(x*size)];
     puzzle.rook = [currentPos];
     for (let i=0; i<pieces; i++) {
+        currentKey = r(currentKey);
+
         if (i%2 == 0) {
+            // Vertical movement
             let newY = currentPos[0];
             while (newY == currentPos[0] || newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})) {
-                newY = r(size);
+                currentKey = r(currentKey);
+                newY = Math.floor(currentKey*size);
             }
             currentPos = [newY, currentPos[1]];
         } else {
+            // Horizontal movement
             let newX = currentPos[1];
             while (newX == currentPos[1] || newX == puzzle.rook[0][1] || puzzle.pieces.some(function (pos){return pos[1] == newX})) {
-                newX = r(size);
+                currentKey = r(currentKey);
+                newX = Math.floor(currentKey*size);
             }
             currentPos = [currentPos[0], newX];
         }
@@ -243,15 +258,13 @@ function clickRook() {
     updatePuzzle(puzzle);
 }
 
-let puzzle = generatePuzzle(10, 13, 1);
-/*let puzzle = {
-    size: 10,
-    pieces: [[0, 4], [4, 4], [0, 0], [0, 8], [8, 8]],
-    rook: [[4, 0]]
-}
+let date = Math.floor(new Date().getTime()/86400000);
+
+let puzzle = generatePuzzle(10, 13, 1, 0.37);
+renderPuzzle(puzzle); // Set up board
+
 let savedPuzzle = window.localStorage.getItem("rpu-progress");
-if (savedPuzzle) {
-    puzzle = JSON.parse(savedPuzzle);
-}*/
-renderPuzzle(puzzle);
-updatePuzzle(puzzle);
+if (savedPuzzle && JSON.parse(savedPuzzle).key == puzzle.key) { // If puzzle progress is saved and the puzzle hasn't changed
+    puzzle = JSON.parse(savedPuzzle); // Load progress into puzzle
+    updatePuzzle(puzzle); // Update board with progress
+}
