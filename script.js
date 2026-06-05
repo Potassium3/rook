@@ -141,7 +141,7 @@ function generatePuzzle(size, pieces, solutions, randomKey) {
     for (let i=0; i<pieces; i++) {
         currentKey = r(currentKey);
 
-        if (i%2 == 0) {
+        if (currentKey>0.5){//(i%2 == 0) {
             // Vertical movement
             let newY = currentPos[0];
             while (newY == currentPos[0] || newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})) {
@@ -258,9 +258,19 @@ function clickRook() {
     updatePuzzle(puzzle);
 }
 
+// This code makes the puzzle key from the date so the puzzles are the same everywhere
+/*
 let date = Math.floor(new Date().getTime()/86400000);
+let masterKey = 10.94823937; // Key for all puzzles - creates element of chaos
+let key = (date%masterKey)/masterKey;
+*/
+let key = Math.random();
 
-let puzzle = generatePuzzle(10, 13, 1, 0.37);
+console.log("Puzzle generator unique key:");
+console.log(String(key))
+let puzzle = generatePuzzle(10, 5, 1, key);
+console.log("Puzzle info (including solution):");
+console.log(puzzle);
 renderPuzzle(puzzle); // Set up board
 
 let savedPuzzle = window.localStorage.getItem("rpu-progress");
