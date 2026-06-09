@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
-  <ellipse style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px;" cx="250" cy="250" rx="150" ry="150"/>
-  <rect x="45.431" y="200" width="154.569" height="100" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 0px;"/>
-  <path d="M 100 100 L 200 200 L 100 200 L 100 100 Z" bx:shape="triangle 100 100 100 100 0 0 1@e90a970d" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 12px; stroke-miterlimit: 2;"/>
+  <path d="M 400 143.934 C 372.855 116.789 335.355 100 293.934 100 C 252.513 100 215.013 116.789 187.868 143.934 C 160.723 171.079 143.934 208.579 143.934 250 C 143.934 291.421 160.723 328.921 187.868 356.066 C 215.013 383.211 252.513 400 293.934 400 C 335.355 400 372.855 383.211 400 356.066" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12px; fill-opacity: 0; transform-origin: 271.967px 250px;" transform="matrix(-1, 0, 0, -1, -0.000056, 0.000003)"/>
+  <path d="M 100 100 L 200 200 L 100 200 L 100 100 Z" bx:shape="triangle 100 100 100 100 0 0 1@e90a970d" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 12px; stroke-miterlimit: 2; fill-opacity: 0;"/>
 </svg>

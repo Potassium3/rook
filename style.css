@@ -1,7 +1,7 @@
 :root {
-    --red-0: #e9f1f5;
-    --red-2: #85addd;
-    --red-3: #679bdb;
+    --blue-0: #e9f1f5;
+    --blue-2: #679bdb;
+    --blue-3: #0e50a0;
     --gray: #d0d0d0;
 }
 
@@ -20,7 +20,7 @@ body {
 }
 
 body:has(#learn:target) {
-    background-color: var(--red-0);
+    background-color: var(--blue-0);
 }
 
 h1 {
@@ -82,8 +82,7 @@ header {
     z-index: 999;
     width: 100%;
     height: 90px;
-    background-color: white;
-    border-bottom: 2px solid var(--gray);
+    background-color: var(--blue-0);
     text-align: center;
 }
 
@@ -103,7 +102,7 @@ nav>a>div {
     /* Underscore element for each link */
     width: 0%;
     position: absolute;
-    background-color: var(--red-3);
+    background-color: var(--blue-3);
     height: 5px;
     left: 50%;
     bottom: -10px;
@@ -153,6 +152,16 @@ main {
     transition: width 0.2s;
 }
 
+.puzzle-sample {
+    /* For small diagrams*/
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: white;
+    aspect-ratio: 1.333;
+}
+
 body:not(:has(:target)) #main-puzzle {
     width: min(100px, calc(100% - 20px));
     border: none;
@@ -195,12 +204,12 @@ body:has(#rewards:target) #main-puzzle {
 
 .puzzle-cell {
     flex-grow: 1;
-    border: 1px solid transparent;
+    border: 1px solid var(--gray);
 }
 
-body:has(#puzzle:target) .puzzle-cell,
-body:has(#learn:target) .puzzle-cell {
-    border: 1px solid var(--gray);
+body:not(:has(:target)) .puzzle-cell,
+body:has(#rewards:target) .puzzle-cell {
+    border: none;
 }
 
 /* Puzzle elements */
@@ -221,7 +230,7 @@ body:has(#learn:target) .puzzle-cell {
 
 body:not(:has(:target)) .puzzle-piece {
     background-image: none;
-    background-color: var(--red-3);
+    background-color: var(--blue-3);
 }
 
 .puzzle-rook {
@@ -240,17 +249,17 @@ body:not(:has(:target)) .puzzle-piece {
 
 body:not(:has(:target)) .puzzle-rook {
     background-image: none;
-    background-color: var(--red-3);
+    background-color: var(--blue-3);
 }
 
 .puzzle-trail {
     position: absolute;
-    background-color: var(--red-3);
+    background-color: var(--blue-2);
     transition: background-color 0.2s;
 }
 
 body:not(:has(:target)) .puzzle-trail {
-    background-color: var(--red-3);
+    background-color: var(--blue-3);
 }
 
 @keyframes puzzle-trail-down {
@@ -323,6 +332,8 @@ body:not(:has(:target)) .puzzle-trail {
     position: relative;
     display: flex;
     flex-direction: column;
+    background-color: var(--blue-0);
+    border-radius: 15px;
 }
 
 body:not(:has(:target)) #main-controls {
@@ -352,6 +363,11 @@ body:has(#rewards:target) #main-controls {
     flex-grow: 1;
 }
 
+.main-controls-middle {
+    background-color: white;
+    border-radius: 15px;
+}
+
 /* Home message */
 
 #main-feedback {
@@ -371,7 +387,7 @@ body:not(:has(:target)) #main-feedback {
 #main-learn {
     display: none;
     margin: auto;
-    background-color: var(--red-0);
+    background-color: var(--blue-0);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     padding: 10px 20px 20px;
@@ -394,6 +410,24 @@ body:has(#learn:target) #main-learn {
 
 body:has(#rewards:target) #main-rewards {
     display: block;
+}
+
+.reward-tip {
+    width: 200px;
+    height: fit-content;
+    min-height: 300px;
+    background-color: var(--blue-0);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: left;
+}
+
+.reward-tips {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 /* Buttons and controls */
@@ -424,7 +458,7 @@ body:has(#rewards:target) #main-rewards {
     cursor: pointer;
     padding: 10px;
     font-weight: 500 !important;
-    background-color: var(--red-2);
+    background-color: var(--blue-2);
 }
 
 .button-control-back {

@@ -39,7 +39,7 @@
                 <div class="main-controls-cell">
                     <button class="button button-small button-control-left" onclick="puzzle = clickButton('left', puzzle); updatePuzzle(puzzle);"></button>
                 </div>
-                <div class="main-controls-cell">
+                <div class="main-controls-middle main-controls-cell">
                     <button class="button button-small button-control-back" onclick="puzzle = clickButton('back', puzzle); updatePuzzle(puzzle);"></button>
                 </div>
                 <div class="main-controls-cell">
@@ -69,6 +69,40 @@
         <div id="main-rewards">
             <h2>Streak</h2>
             <p>Streak, coins, puzzler strength</p>
+            <div class="reward-tips">
+                <div class="reward-tip">
+                    <div class="puzzle-sample">
+                        <div class="puzzle-grid">
+                            <div class="puzzle-row">
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                            </div>
+                            <div class="puzzle-row">
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                            </div>
+                            <div class="puzzle-row">
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                                <div class="puzzle-cell"></div>
+                            </div>
+                        </div>
+                        <div class="puzzle-rook" style="top:16.667%;left:12.5%;width:25%;"></div>
+                        <div class="puzzle-piece" style="top:50%;left:12.5%;width:25%;"></div>
+                    </div>
+                    <h2>Tip</h2>
+                    <p>Whenever three or more pieces are in a row, a decision is required. Choose carefully.</p>
+                </div>
+                <div class="reward-tip">
+                    <h2>Tip</h2>
+                    <p>Hello!</p>
+                </div>
+            </div>
         </div>
     </main>
     <script src="script.js"></script>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">
+  <g>
+    <path d="M 0 0 C 16.5 0 33 0 50 0 C 50 16.5 50 33 50 50 C 33.5 50 17 50 0 50 C 0 33.5 0 17 0 0 Z" id="path-3" style="stroke-width: 0.5; fill: rgb(255, 255, 255); fill-opacity: 0;"/>
+    <g style="" transform="matrix(0.1, 0, 0, 0.1, 13.25, 10)">
+      <rect y="97.22" width="90" height="180" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" x="71.971"/>
+      <rect x="56.971" width="120" height="60" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" y="217.22"/>
+      <path d="M 236.971 277.22 L 116.974 277.22 C 116.974 244.083 143.836 217.22 176.971 217.22 C 210.108 217.22 236.971 244.083 236.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <ellipse style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" cx="116.971" cy="82.22" rx="75" ry="75"/>
+      <path d="M 116.971 277.22 L -3.026 277.22 C -3.026 244.083 23.836 217.22 56.971 217.22 C 90.108 217.22 116.971 244.083 116.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 191.971 176.419 L 131.974 176.419 C 131.974 159.852 145.404 146.42 161.972 146.42 C 178.54 146.42 191.971 159.852 191.971 176.419 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 101.968 146.421 L 41.971 146.421 C 41.971 162.988 55.401 176.42 71.969 176.42 C 88.537 176.42 101.968 162.988 101.968 146.421 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000029, 0.000029)"/>
+      <rect x="77.971" y="97.22" width="78" height="174" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 0;"/>
+    </g>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 50.000001)">
+    <path d="M 50 0 C 66.5 0 83 0 100 0 C 100 16.5 100 33 100 50 C 83.5 50 67 50 50 50 C 50 33.5 50 17 50 0 Z" id="svg_1" style="stroke-width: 0.5; fill: rgb(255, 255, 255); fill-opacity: 0;"/>
+    <g style="width: 70px; height: 70px;" transform="matrix(0.503693, 0, 0, 0.503687, 56.247426, -56.987332)">
+      <path d="M 14.895 125.549 L 14.895 140.439 C 6.671 140.439 0.005 133.773 0.005 125.549 L 14.895 125.549 Z" style="stroke: rgb(0, 0, 0); stroke-width: 0;"/>
+      <path d="M 74.455 125.549 C 74.455 129.662 72.788 133.384 70.094 136.078 C 67.399 138.773 63.677 140.439 59.565 140.439 L 59.565 125.549 L 74.455 125.549 Z" style="stroke: rgb(0, 0, 0); stroke-width: 0;"/>
+      <path d="M 29.785 200 L 0.005 200 C 0.005 191.776 6.671 185.11 14.895 185.11 C 23.118 185.11 29.785 191.776 29.785 200 Z" style="stroke: rgb(0, 0, 0); stroke-width: 0;"/>
+      <path d="M 74.455 200 L 44.675 200 C 44.675 191.776 51.341 185.11 59.565 185.11 C 67.789 185.11 74.455 191.776 74.455 200 Z" style="stroke: rgb(0, 0, 0); stroke-width: 0;"/>
+      <rect y="140.439" width="44.671" height="59.561" style="stroke: rgb(0, 0, 0); stroke-width: 0;" x="14.895"/>
+      <rect x="29.785" width="14.89" height="29.781" style="stroke: rgb(0, 0, 0); stroke-width: 0;" y="125.549"/>
+    </g>
+    <path d="M 60.567 24.722 C 64.692 24.722 70.832 24.717 71.542 24.722 C 72.252 24.727 74.547 25.127 74.542 25.332 C 74.537 25.542 74.542 25.737 74.542 25.942 C 68.272 25.942 62.002 25.942 55.542 25.942 C 55.542 25.742 55.532 25.512 55.542 25.332 C 55.552 25.147 57.077 24.717 57.542 24.722 L 60.567 24.722 Z" id="svg_3" style="stroke-width: 0.5; transform-box: fill-box; transform-origin: 50% 50%;" fill="#454545" transform="matrix(0, 1, -1, 0, -0.000002, -0.000002)"/>
+    <path d="M 62.499 13.314 C 62.689 13.314 62.582 12.927 62.778 12.927 C 61.492 12.335 60.451 11.521 59.466 10.401 C 58.482 9.281 58.211 8.644 57.987 7.192 C 57.607 7.192 57.182 7.124 56.791 7.124 C 56.958 8.69 57.686 9.852 59.027 11.18 C 60.369 12.507 61.814 12.889 62.499 13.314 Z" id="svg_5" style="stroke-width: 0.5;" fill="#7D7D7D"/>
+    <path d="M 71.987 13.218 C 72.435 13.218 72.475 13.199 72.818 12.169 C 72.709 11.319 72.661 9.99 72.67 9.422 C 72.678 8.854 72.922 8.438 72.698 6.985 C 72.318 6.985 72.188 6.918 71.797 6.918 C 71.964 8.483 71.772 9.609 71.826 10.385 C 71.88 11.16 71.928 12.131 71.987 13.218 Z" id="path-1" style="stroke-width: 0.5;" fill="#7D7D7D"/>
+    <path d="M 62.617 36.844 C 62.807 36.844 62.701 37.231 62.897 37.231 C 61.611 37.823 60.569 38.637 59.585 39.757 C 58.6 40.877 58.329 41.514 58.105 42.966 C 57.725 42.966 57.301 43.034 56.909 43.034 C 57.077 41.468 57.804 40.306 59.146 38.978 C 60.487 37.651 61.932 37.269 62.617 36.844 Z" id="path-2" style="stroke-width: 0.5;" fill="#7D7D7D"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 150.000002, 0)">
+    <path d="M 0 0 C 16.5 0 33 0 50 0 C 50 16.5 50 33 50 50 C 33.5 50 17 50 0 50 C 0 33.5 0 17 0 0 Z" id="path-4" style="stroke-width: 0.5; fill: rgb(255, 255, 255); fill-opacity: 0;"/>
+    <g style="" transform="matrix(0.1, 0, 0, 0.1, 13.25, 10)">
+      <rect y="97.22" width="90" height="180" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" x="71.971"/>
+      <rect x="56.971" width="120" height="60" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" y="217.22"/>
+      <path d="M 236.971 277.22 L 116.974 277.22 C 116.974 244.083 143.836 217.22 176.971 217.22 C 210.108 217.22 236.971 244.083 236.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <ellipse style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" cx="116.971" cy="82.22" rx="75" ry="75"/>
+      <path d="M 116.971 277.22 L -3.026 277.22 C -3.026 244.083 23.836 217.22 56.971 217.22 C 90.108 217.22 116.971 244.083 116.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 191.971 176.419 L 131.974 176.419 C 131.974 159.852 145.404 146.42 161.972 146.42 C 178.54 146.42 191.971 159.852 191.971 176.419 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 101.968 146.421 L 41.971 146.421 C 41.971 162.988 55.401 176.42 71.969 176.42 C 88.537 176.42 101.968 162.988 101.968 146.421 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000029, 0.000029)"/>
+      <rect x="77.971" y="97.22" width="78" height="174" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 0;"/>
+    </g>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 150.000002, 50.000001)">
+    <path d="M 0 0 C 16.5 0 33 0 50 0 C 50 16.5 50 33 50 50 C 33.5 50 17 50 0 50 C 0 33.5 0 17 0 0 Z" id="path-5" style="stroke-width: 0.5; fill: rgb(255, 255, 255); fill-opacity: 0;"/>
+    <g style="" transform="matrix(0.1, 0, 0, 0.1, 13.25, 10)">
+      <rect y="97.22" width="90" height="180" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" x="71.971"/>
+      <rect x="56.971" width="120" height="60" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" y="217.22"/>
+      <path d="M 236.971 277.22 L 116.974 277.22 C 116.974 244.083 143.836 217.22 176.971 217.22 C 210.108 217.22 236.971 244.083 236.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <ellipse style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" cx="116.971" cy="82.22" rx="75" ry="75"/>
+      <path d="M 116.971 277.22 L -3.026 277.22 C -3.026 244.083 23.836 217.22 56.971 217.22 C 90.108 217.22 116.971 244.083 116.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 191.971 176.419 L 131.974 176.419 C 131.974 159.852 145.404 146.42 161.972 146.42 C 178.54 146.42 191.971 159.852 191.971 176.419 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 101.968 146.421 L 41.971 146.421 C 41.971 162.988 55.401 176.42 71.969 176.42 C 88.537 176.42 101.968 162.988 101.968 146.421 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000029, 0.000029)"/>
+      <rect x="77.971" y="97.22" width="78" height="174" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 0;"/>
+    </g>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 150.000002, 99.999994)">
+    <path d="M 0 0 C 16.5 0 33 0 50 0 C 50 16.5 50 33 50 50 C 33.5 50 17 50 0 50 C 0 33.5 0 17 0 0 Z" id="path-6" style="stroke-width: 0.5; fill: rgb(255, 255, 255); fill-opacity: 0;"/>
+    <g style="" transform="matrix(0.1, 0, 0, 0.1, 13.25, 10)">
+      <rect y="97.22" width="90" height="180" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" x="71.971"/>
+      <rect x="56.971" width="120" height="60" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" y="217.22"/>
+      <path d="M 236.971 277.22 L 116.974 277.22 C 116.974 244.083 143.836 217.22 176.971 217.22 C 210.108 217.22 236.971 244.083 236.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <ellipse style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;" cx="116.971" cy="82.22" rx="75" ry="75"/>
+      <path d="M 116.971 277.22 L -3.026 277.22 C -3.026 244.083 23.836 217.22 56.971 217.22 C 90.108 217.22 116.971 244.083 116.971 277.22 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 191.971 176.419 L 131.974 176.419 C 131.974 159.852 145.404 146.42 161.972 146.42 C 178.54 146.42 191.971 159.852 191.971 176.419 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12;"/>
+      <path d="M 101.968 146.421 L 41.971 146.421 C 41.971 162.988 55.401 176.42 71.969 176.42 C 88.537 176.42 101.968 162.988 101.968 146.421 Z" style="stroke: rgb(0, 0, 0); stroke-miterlimit: 30; fill: rgb(255, 255, 255); stroke-width: 12; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000029, 0.000029)"/>
+      <rect x="77.971" y="97.22" width="78" height="174" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 0;"/>
+    </g>
+  </g>
+</svg>
