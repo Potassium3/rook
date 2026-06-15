@@ -44,6 +44,13 @@ h2 {
     color: black;
 }
 
+h2.sticky {
+    position: sticky;
+    top: 90px;
+    background-color: white;
+    z-index: 999;
+}
+
 button, a.button {
     line-height: 20px;
     height: 40px;
@@ -84,6 +91,9 @@ header {
     height: 90px;
     background-color: var(--blue-0);
     text-align: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 5px 10px white;
 }
 
 nav {
@@ -134,7 +144,6 @@ body:has(#rewards:target) #nav-rewards-underscore {
 main {
     background-color: white;
     padding-top: 10px;
-    overflow-y: auto;
     flex-grow: 1;
 }
 
@@ -160,6 +169,8 @@ main {
     border-radius: 15px;
     background-color: white;
     aspect-ratio: 1.333;
+    width: fit-content;
+    height: fit-content;
 }
 
 body:not(:has(:target)) #main-puzzle {
@@ -194,6 +205,13 @@ body:has(#rewards:target) #main-puzzle {
     height: 100%;
 }
 
+.puzzle-sample-grid {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+}
+
 .puzzle-row {
     display: flex;
     flex-direction: row;
@@ -202,9 +220,25 @@ body:has(#rewards:target) #main-puzzle {
     border: none;
 }
 
+.puzzle-sample-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+}
+
 .puzzle-cell {
     flex-grow: 1;
     border: 1px solid var(--gray);
+}
+
+.puzzle-sample-cell {
+    width: 40px;
+    height: 40px;
+    flex-grow: 1;
+    border: none;
 }
 
 body:not(:has(:target)) .puzzle-cell,
@@ -413,7 +447,7 @@ body:has(#rewards:target) #main-rewards {
 }
 
 .reward-tip {
-    width: 200px;
+    width: 190px;
     height: fit-content;
     min-height: 300px;
     background-color: var(--blue-0);
@@ -425,9 +459,10 @@ body:has(#rewards:target) #main-rewards {
 .reward-tips {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin-top: 10px;
+    margin: 10px 10px 0;
 }
 
 /* Buttons and controls */
