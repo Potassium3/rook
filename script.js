@@ -126,7 +126,65 @@ function r(last) {
     return 4*last*(1-last);
 }
 
-function generatePuzzle(size, pieces, solutions, randomKey) {
+// Recursive algorithm for rook route choosing
+function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[], lastVertical=false) {
+    console.log(pieces);
+    let newPieceList = pieceList;
+    if (pieces == 0) {
+        return [true, pieceList]; // Returns status of recursive branch and list of pieces if successful
+    }
+
+    let currentKey = randomKey;
+    currentKey = r(currentKey);
+    let vertical = !lastVertical;//currentKey >= 0.5; // Perpendicular direction each move (for now)
+    if (vertical) {
+        // Vertical movement
+        let newY = 0;
+        if (lastVertical) {
+
+        } else {
+            let resolved = false;
+            let returned = [false, []]
+            while (!resolved) {
+                while (newY == y || pieceList.some(function(piece){return piece[0] == newY})) { // Stricter conditions to be applied on parallel directions
+                    currentKey = r(currentKey);
+                    newY = Math.floor(currentKey*size); // Pick random y until different to current pos
+                    console.log("choosing y");
+                }
+                console.log("y chosen");
+                newPieceList.push([newY, x]); // Move
+                console.log(JSON.stringify([newY, x]));
+                returned = route(x, newY, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical);
+                resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
+            }
+            return [true, returned[1]];
+        }
+    } else {
+        let newX = 0;
+        // Horizontal movement
+        if (lastVertical) {
+            let resolved = false;
+            let returned = [false, []]
+            while (!resolved) {
+                while (newX == x || pieceList.some(function(piece){return piece[1] == newX})) { // Stricter conditions to be applied on parallel directions
+                    currentKey = r(currentKey);
+                    newX = Math.floor(currentKey*size); // Pick random y until different to current pos
+                    console.log("choosing x");
+                }
+                console.log("x chosen");
+                newPieceList.push([y, newX]); // Move
+                console.log(JSON.stringify([y, newX]));
+                returned = route(newX, y, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical);
+                resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
+            }
+            return [true, returned[1]];
+        } else {
+
+        }
+    }
+}
+
+function generatePuzzle(size, pieces, solutions, complexity, randomKey) {
     let currentKey = randomKey; // Pseudorandom start number
     let puzzle = {
         size: size,
@@ -136,30 +194,13 @@ function generatePuzzle(size, pieces, solutions, randomKey) {
     }
     let y = currentKey = r(currentKey);
     let x = currentKey = r(currentKey);
-    let currentPos = [Math.floor(x*size), Math.floor(x*size)];
+    x = Math.floor(x*size);
+    y = Math.floor(y*size);
+    let currentPos = [y, x];
     puzzle.rook = [currentPos];
-    for (let i=0; i<pieces; i++) {
-        currentKey = r(currentKey);
+    let generated = route(x, y, size, pieces, solutions, complexity, randomKey);
+    puzzle.pieces = generated[1];
 
-        if (currentKey>0.5){//(i%2 == 0) {
-            // Vertical movement
-            let newY = currentPos[0];
-            while (newY == currentPos[0] || newY == puzzle.rook[0][0] || puzzle.pieces.some(function (pos){return pos[0] == newY})) {
-                currentKey = r(currentKey);
-                newY = Math.floor(currentKey*size);
-            }
-            currentPos = [newY, currentPos[1]];
-        } else {
-            // Horizontal movement
-            let newX = currentPos[1];
-            while (newX == currentPos[1] || newX == puzzle.rook[0][1] || puzzle.pieces.some(function (pos){return pos[1] == newX})) {
-                currentKey = r(currentKey);
-                newX = Math.floor(currentKey*size);
-            }
-            currentPos = [currentPos[0], newX];
-        }
-        puzzle.pieces.push(currentPos);
-    }
     return puzzle;
 }
 
@@ -268,7 +309,7 @@ let key = Math.random();
 
 console.log("Puzzle generator unique key:");
 console.log(String(key))
-let puzzle = generatePuzzle(10, 5, 1, key);
+let puzzle = generatePuzzle(10, 10, 1, 5, key);
 console.log("Puzzle info (including solution):");
 console.log(puzzle);
 renderPuzzle(puzzle); // Set up board
