@@ -127,7 +127,17 @@ function r(last) {
 }
 
 // Recursive algorithm for rook route choosing
-function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[], lastVertical=false) {
+function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[], lastVertical=false, originalPos=[-1, -1]) {
+
+    // Store original start position for use over all depths of the function
+    let original = [0, 0];
+    if (originalPos[0] == -1) {
+        original = [x, y];
+        console.log("s"+original[0])
+    } else {
+        original = originalPos;
+    }
+
     console.log(pieces);
     let newPieceList = pieceList;
     if (pieces == 0) {
@@ -146,7 +156,7 @@ function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[
             let resolved = false;
             let returned = [false, []]
             while (!resolved) {
-                while (newY == y || pieceList.some(function(piece){return piece[0] == newY})) { // Stricter conditions to be applied on parallel directions
+                while (newY == y || newY == original[1] || pieceList.some(function(piece){return piece[0] == newY})) { // Stricter conditions to be applied on parallel directions
                     currentKey = r(currentKey);
                     newY = Math.floor(currentKey*size); // Pick random y until different to current pos
                     console.log("choosing y");
@@ -154,7 +164,7 @@ function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[
                 console.log("y chosen");
                 newPieceList.push([newY, x]); // Move
                 console.log(JSON.stringify([newY, x]));
-                returned = route(x, newY, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical);
+                returned = route(x, newY, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical, original);
                 resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
             }
             return [true, returned[1]];
@@ -166,7 +176,7 @@ function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[
             let resolved = false;
             let returned = [false, []]
             while (!resolved) {
-                while (newX == x || pieceList.some(function(piece){return piece[1] == newX})) { // Stricter conditions to be applied on parallel directions
+                while (newX == x || newX == original[0] || pieceList.some(function(piece){return piece[1] == newX})) { // Stricter conditions to be applied on parallel directions
                     currentKey = r(currentKey);
                     newX = Math.floor(currentKey*size); // Pick random y until different to current pos
                     console.log("choosing x");
@@ -174,7 +184,7 @@ function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[
                 console.log("x chosen");
                 newPieceList.push([y, newX]); // Move
                 console.log(JSON.stringify([y, newX]));
-                returned = route(newX, y, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical);
+                returned = route(newX, y, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical, original);
                 resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
             }
             return [true, returned[1]];
