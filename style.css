@@ -11,18 +11,17 @@ html.dark {
     --blue-0: #072433;
     --blue-2: #679bdb;
     --blue-3: #bfd7f4;
-    --yellow-2: #3bc12f;
     --gray: #303030;
     --text: #ffffff;
     --background: #000000;
 }
 
-html.dark *.puzzle-rook,
-html.dark *.puzzle-piece {
+html.dark .puzzle-rook,
+html.dark .puzzle-piece {
     filter: invert(1);
 }
 
-html.dark *.button-small {
+html.dark .button-small {
     filter: invert(1);
     /* Background of small buttons is transparent: not affected. */
 }
@@ -341,6 +340,7 @@ body:not(:has(:target)) .puzzle-piece {
 
 body:not(:has(:target)) .puzzle-rook {
     background-image: none;
+    filter: none;
     background-color: var(--blue-3);
 }
 

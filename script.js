@@ -126,6 +126,10 @@ function r(last) {
     return 4*last*(1-last);
 }
 
+function between(x, value, y) {
+    return (x>value && value>y) || (x<value && value<y);
+}
+
 // Recursive algorithm for rook route choosing
 function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[], lastVertical=false, originalPos=[-1, -1]) {
 
@@ -146,26 +150,65 @@ function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[
 
     let currentKey = randomKey;
     currentKey = r(currentKey);
-    let vertical = !lastVertical;//currentKey >= 0.5; // Perpendicular direction each move (for now)
+    let vertical = currentKey >= 0.5; // Perpendicular direction each move (for now)
     if (vertical) {
         // Vertical movement
         let newY = 0;
         if (lastVertical) {
-
-        } else {
             let resolved = false;
             let returned = [false, []]
+            let j = 0;
             while (!resolved) {
-                while (newY == y || newY == original[1] || pieceList.some(function(piece){return piece[0] == newY})) { // Stricter conditions to be applied on parallel directions
+                let i = 0;
+                while (newY == y || newY == original[1] || pieceList.some(function(piece){return piece[0] == newY}) || (pieceList.length >= 2 && between(pieceList[pieceList.length-1][0], newY, pieceList[pieceList.length-2][0]))) { 
+                    // Stricter condition: cannot be placed in between the last piece and the second last
                     currentKey = r(currentKey);
-                    newY = Math.floor(currentKey*size); // Pick random y until different to current pos
+                    newY = Math.floor(currentKey*size); // Pick random y until valid
                     console.log("choosing y");
+                    i++;
+                    if (i == 10) {
+                        return [false, null]; // Tried too many times, must be impossible
+                    }
                 }
                 console.log("y chosen");
                 newPieceList.push([newY, x]); // Move
                 console.log(JSON.stringify([newY, x]));
                 returned = route(x, newY, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical, original);
                 resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
+                if (!resolved && j>=10) {
+                    newPieceList.pop();
+                    return [false, null];
+                }
+                j++;
+            }
+            return [true, returned[1]];
+        } else {
+            let resolved = false;
+            let returned = [false, []]
+            let j = 0;
+            while (!resolved) {
+                let i = 0;
+                while (newY == y || newY == original[1] || pieceList.some(function(piece){return piece[0] == newY})) { 
+                    // Stricter conditions to be applied on parallel directions
+                    currentKey = r(currentKey);
+                    newY = Math.floor(currentKey*size); // Pick random y until valid
+                    console.log("choosing y");
+                    i++;
+                    if (i == 10) {
+                        return [false, null]; // Tried too many times, must be impossible
+                    }
+                }
+                console.log("y chosen");
+                newPieceList.push([newY, x]); // Move
+                console.log(JSON.stringify([newY, x]));
+                returned = route(x, newY, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical, original);
+                resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
+
+                if (!resolved && j>=10) {
+                    newPieceList.pop();
+                    return [false, null];
+                }
+                j++;
             }
             return [true, returned[1]];
         }
@@ -175,21 +218,60 @@ function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[
         if (lastVertical) {
             let resolved = false;
             let returned = [false, []]
+            let j = 0;
             while (!resolved) {
-                while (newX == x || newX == original[0] || pieceList.some(function(piece){return piece[1] == newX})) { // Stricter conditions to be applied on parallel directions
+                let i = 0;
+                while (newX == x || newX == original[0] || pieceList.some(function(piece){return piece[1] == newX})) { 
+                    // Stricter conditions to be applied on parallel directions
                     currentKey = r(currentKey);
-                    newX = Math.floor(currentKey*size); // Pick random y until different to current pos
+                    newX = Math.floor(currentKey*size); // Pick random x until valid
                     console.log("choosing x");
+                    i++;
+                    if (i == 10) {
+                        return [false, null]; // Tried too many times, must be impossible
+                    }
                 }
                 console.log("x chosen");
                 newPieceList.push([y, newX]); // Move
                 console.log(JSON.stringify([y, newX]));
                 returned = route(newX, y, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical, original);
                 resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
+                if (!resolved && j>=10) {
+                    newPieceList.pop();
+                    return [false, null];
+                }
+                j++;
             }
             return [true, returned[1]];
         } else {
-
+            let resolved = false;
+            let returned = [false, []]
+            let j = 0;
+            while (!resolved) {
+                let i = 0;
+                while (newX == x || newX == original[0] || pieceList.some(function(piece){return piece[1] == newX}) || (pieceList.length >= 2 && between(pieceList[pieceList.length-1][1], newX, pieceList[pieceList.length-2][1]))) { 
+                    // Stricter conditions to be applied on parallel directions
+                    currentKey = r(currentKey);
+                    newX = Math.floor(currentKey*size); // Pick random x until valid
+                    console.log("choosing x");
+                    i++;
+                    if (i == 10) {
+                        return [false, null]; // Tried too many times, must be impossible
+                    }
+                }
+                console.log("x chosen");
+                newPieceList.push([y, newX]); // Move
+                console.log(JSON.stringify([y, newX]));
+                returned = route(newX, y, size, pieces-1, solutions, complexity, currentKey, newPieceList, vertical, original);
+                resolved = returned[0]; // If resolved, possible puzzle route found in this branch of recursive func
+                
+                if (!resolved && j>=10) {
+                    newPieceList.pop();
+                    return [false, null];
+                }
+                j++;
+            }
+            return [true, returned[1]];
         }
     }
 }
