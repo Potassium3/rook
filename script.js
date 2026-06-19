@@ -329,3 +329,34 @@ if (savedPuzzle && JSON.parse(savedPuzzle).key == puzzle.key) { // If puzzle pro
     puzzle = JSON.parse(savedPuzzle); // Load progress into puzzle
     updatePuzzle(puzzle); // Update board with progress
 }
+
+// Dark mode
+
+let settings = window.localStorage.getItem("rpu-settings");
+if (settings) {
+    renderSettings();
+} else {
+    // Default
+    window.localStorage.setItem("rpu-settings", JSON.stringify({
+        dark: false,
+    }))
+}
+
+function renderSettings() {
+    let settings = JSON.parse(window.localStorage.getItem("rpu-settings"));
+    if (settings.dark) {
+        document.querySelector("html").className = "dark";
+        document.getElementById("input-dark").checked = true;
+    } else {
+        document.querySelector("html").className = "light";
+        document.getElementById("input-dark").checked = false;
+    }
+}
+
+function toggleDarkMode() {
+    let settings = JSON.parse(window.localStorage.getItem("rpu-settings"));
+    settings.dark = !settings.dark;
+    window.localStorage.setItem("rpu-settings", JSON.stringify(settings));
+
+    renderSettings();
+}
