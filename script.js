@@ -127,11 +127,12 @@ function r(last) {
 }
 
 function between(x, value, y) {
-    return (x>value && value>y) || (x<value && value<y);
+    console.log(x, value, y);
+    return (x>=value && value>=y) || (x<=value && value<=y);
 }
 
 // Recursive algorithm for rook route choosing
-function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[], lastVertical=false, originalPos=[-1, -1]) {
+function route(x, y, size, pieces, solutions, complexity, randomKey, pieceList=[[y, x]], lastVertical=false, originalPos=[-1, -1]) {
 
     // Store original start position for use over all depths of the function
     let original = [0, 0];
