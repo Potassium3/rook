@@ -110,6 +110,17 @@ a {
     margin: 0;
 }
 
+small {
+    line-height: 10px;
+    height: 10px;
+    font-size: 0.4rem;
+    font-weight: 500;
+    font-family: Poppins, Helvetica, sans-serif;
+    color: var(--blue-2);
+    text-decoration: none;
+    margin: 0;
+}
+
 hr {
     width: 100%;
     margin: 10px 0 10px;
@@ -434,7 +445,7 @@ body:not(:has(:target)) .puzzle-trail {
     display: flex;
     flex-direction: column;
     background-color: var(--blue-0);
-    border-radius: 15px;
+    border-radius: 100%;
 }
 
 body:not(:has(:target)) #main-controls {
@@ -460,13 +471,45 @@ body:has(#rewards:target) #main-controls {
 }
 
 .main-controls-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     flex-grow: 1;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
 }
 
 .main-controls-middle {
     background-color: var(--background);
-    border-radius: 15px;
+    border-radius: 100%;
+}
+
+.main-controls-button {
+    flex-grow: 1;
+    height: 100%;
+    max-width: 30px;
+    max-height: 30px; /* Overrides default 40px */
+    background-size: 40px;
+    background-position: center;
+}
+
+.main-controls-keyboardcommands {
+    height: 0px;
+    transition: height 0.4s;
+    overflow: hidden;
+}
+
+html.keyboardcommands .main-controls-keyboardcommands,
+#main-controls:focus .main-controls-keyboardcommands {
+    height: 10px;
+}
+
+html.keyboardcommands .main-controls-middle,
+#main-controls:focus .main-controls-middle {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 /* Home message */
@@ -595,13 +638,12 @@ body:has(#rewards:target) #main-rewards {
 
 .button-small {
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 40px;
     height: 40px;
     cursor: pointer;
     margin: 0;
+    padding: 0;
+    border: none;
     background-color: transparent;
 }
 
@@ -648,6 +690,10 @@ body:has(#rewards:target) #main-rewards {
     position: relative;
 }
 
+.input-checkbox:has(:focus) .input-checkbox-ticker {
+    outline: 2px solid var(--text);
+}
+
 .input-checkbox-clicker {
     position: absolute;
     opacity: 0;
@@ -668,7 +714,7 @@ body:has(#rewards:target) #main-rewards {
     top: 0;
     left: 0;
     border: 2px solid var(--blue-3);
-    border-radius: 2px;
+    border-radius: 10px;
     background-color: transparent;
 }
 

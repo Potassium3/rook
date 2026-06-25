@@ -27,29 +27,34 @@
         <div id="main-puzzle">
             <!-- Script.js -->
         </div>
-        <div id="main-controls">
+        <div id="main-controls" tabindex="0">
             <div class="main-controls-row">
                 <div class="main-controls-cell"></div>
                 <div class="main-controls-cell">
-                    <button class="button button-small button-control-up" onclick="puzzle = clickButton('up', puzzle); updatePuzzle(puzzle);"></button>
+                    <button class="button button-small button-control-up main-controls-button" onclick="puzzle = clickButton('up', puzzle, false); updatePuzzle(puzzle);"></button>
+                    <small class="button-small-detail main-controls-keyboardcommands">Up Arrow</small>
                 </div>
                 <div class="main-controls-cell"></div>
             </div>
             <div class="main-controls-row">
                 <div class="main-controls-cell">
-                    <button class="button button-small button-control-left" onclick="puzzle = clickButton('left', puzzle); updatePuzzle(puzzle);"></button>
+                    <button class="button button-small button-control-left main-controls-button" onclick="puzzle = clickButton('left', puzzle, false); updatePuzzle(puzzle);"></button>
+                    <small class="button-small-detail main-controls-keyboardcommands">Left Arrow</small>
                 </div>
                 <div class="main-controls-middle main-controls-cell">
-                    <button class="button button-small button-control-back" onclick="puzzle = clickButton('back', puzzle); updatePuzzle(puzzle);"></button>
+                    <button class="button button-small button-control-back main-controls-button" onclick="puzzle = clickButton('back', puzzle, false); updatePuzzle(puzzle);"></button>
+                    <small class="button-small-detail main-controls-keyboardcommands">Backspace</small>
                 </div>
                 <div class="main-controls-cell">
-                    <button class="button button-small button-control-right" onclick="puzzle = clickButton('right', puzzle); updatePuzzle(puzzle);"></button>
+                    <button class="button button-small button-control-right main-controls-button" onclick="puzzle = clickButton('right', puzzle, false); updatePuzzle(puzzle);"></button>
+                    <small class="button-small-detail main-controls-keyboardcommands">Right Arrow</small>
                 </div>
             </div>
             <div class="main-controls-row">
                 <div class="main-controls-cell"></div>
                 <div class="main-controls-cell">
-                    <button class="button button-small button-control-down" onclick="puzzle = clickButton('down', puzzle); updatePuzzle(puzzle);"></button>
+                    <button class="button button-small button-control-down main-controls-button" onclick="puzzle = clickButton('down', puzzle, false); updatePuzzle(puzzle);"></button>
+                    <small class="button-small-detail main-controls-keyboardcommands">Down Arrow</small>
                 </div>
                 <div class="main-controls-cell"></div>
             </div>

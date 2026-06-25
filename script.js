@@ -297,7 +297,7 @@ function generatePuzzle(size, pieces, solutions, complexity, randomKey) {
     return puzzle;
 }
 
-function clickButton(button, puzzle) {
+function clickButton(button, puzzle, keyboardcommands=false) {
     let rookX = puzzle.rook[puzzle.rook.length-1][1]
     let rookY = puzzle.rook[puzzle.rook.length-1][0]
     if (button == "up") {
@@ -359,6 +359,19 @@ function clickButton(button, puzzle) {
             puzzle.rook.pop()
         }
     }
+
+    let classes = document.querySelector("html").classList;
+    if (keyboardcommands) {
+        if (!classes.contains("keyboardcommands")) {
+            classes.add("keyboardcommands");
+        }
+    } else {
+        if (classes.contains("keyboardcommands")) {
+            classes.remove("keyboardcommands");
+        }
+    }
+    document.querySelector("html").classList = classes;
+
     return puzzle;
 }
 
@@ -368,16 +381,16 @@ function clickPiece(y, x) {
     if (x == rookPos[1]) {
         // Vertical movement
         if (y > rookPos[0]) {
-            clickButton("down", puzzle);
+            clickButton("down", puzzle, false);
         } else {
-            clickButton("up", puzzle);
+            clickButton("up", puzzle, false);
         }
     } else if (y == rookPos[0]) {
         // Horizontal movement
         if (x > rookPos[1]) {
-            clickButton("right", puzzle);
+            clickButton("right", puzzle, false);
         } else {
-            clickButton("left", puzzle);
+            clickButton("left", puzzle, false);
         }
     }
     updatePuzzle(puzzle);
@@ -385,12 +398,29 @@ function clickPiece(y, x) {
 
 function clickRook() {
     // Uses the global puzzle
-    if (puzzle.rook.length > 1) {
-        puzzle.rook.pop()
-        // Undo move
-    }
+    puzzle = clickButton("back", puzzle, false);
     updatePuzzle(puzzle);
 }
+
+// Arrow key movement
+document.querySelector("html").addEventListener("keyup", (event) => {
+    if (event.key == "ArrowDown") {
+        puzzle = clickButton('down', puzzle, true);
+        updatePuzzle(puzzle);
+    } else if (event.key == "ArrowUp") {
+        puzzle = clickButton('up', puzzle, true);
+        updatePuzzle(puzzle);
+    } else if (event.key == "ArrowLeft") {
+        puzzle = clickButton('left', puzzle, true);
+        updatePuzzle(puzzle);
+    } else if (event.key == "ArrowRight") {
+        puzzle = clickButton('right', puzzle, true);
+        updatePuzzle(puzzle);
+    } else if (event.key == "Backspace") {
+        puzzle = clickButton('back', puzzle, true);
+        updatePuzzle(puzzle);
+    }
+});
 
 // This code makes the puzzle key from the date so the puzzles are the same everywhere
 /*
@@ -406,6 +436,7 @@ let puzzle = generatePuzzle(10, 10, 1, 5, key);
 console.log("Puzzle info (including solution):");
 console.log(puzzle);
 renderPuzzle(puzzle); // Set up board
+updatePuzzle(puzzle);
 
 let savedPuzzle = window.localStorage.getItem("rpu-progress");
 if (savedPuzzle && JSON.parse(savedPuzzle).key == puzzle.key) { // If puzzle progress is saved and the puzzle hasn't changed
@@ -427,13 +458,19 @@ if (settings) {
 
 function renderSettings() {
     let settings = JSON.parse(window.localStorage.getItem("rpu-settings"));
+    let classes = document.querySelector("html").classList;
     if (settings.dark) {
-        document.querySelector("html").className = "dark";
+        if (!classes.contains("dark")) {
+            classes.add("dark");
+        }
         document.getElementById("input-dark").checked = true;
     } else {
-        document.querySelector("html").className = "light";
+        if (classes.contains("dark")) {
+            classes.remove("dark");
+        }
         document.getElementById("input-dark").checked = false;
     }
+    document.querySelector("html").classList = classes;
 }
 
 function toggleDarkMode() {
