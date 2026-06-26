@@ -9,6 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body:not(:has(:target)) #nav-home-underscore {
+            width: 100%;
+            left: 0;
+        }
+
+        body:has(#learn:target) #nav-learn-underscore {
+            width: 100%;
+            left: 0;
+        }
+
+        body:has(#puzzle:target) #nav-puzzle-underscore {
+            width: 100%;
+            left: 0;
+        }
+
+        body:has(#rewards:target) #nav-rewards-underscore {
+            width: 100%;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="learn"></div>
@@ -17,10 +38,11 @@
     <header>
         <h1>Rook Puzzle</h1>
         <nav>
-            <a id="nav-home" href="#">HOME<div id="nav-home-underscore"></div></a>
-            <a id="nav-learn" href="#learn">LEARN<div id="nav-learn-underscore"></div></a>
-            <a id="nav-puzzle" href="#puzzle">PUZZLE<div id="nav-puzzle-underscore"></div></a>
-            <a id="nav-rewards" href="#rewards">REWARDS<div id="nav-rewards-underscore"></div></a>
+            <a id="nav-home" class="button-nav" href="#">HOME<div id="nav-home-underscore"></div></a>
+            <a id="nav-about" class="button-nav" href="/about">ABOUT<div id="nav-about-underscore"></div></a>
+            <a id="nav-learn" class="button-nav" href="#learn">LEARN<div id="nav-learn-underscore"></div></a>
+            <a id="nav-puzzle" class="button-nav" href="#puzzle">PUZZLE<div id="nav-puzzle-underscore"></div></a>
+            <a id="nav-rewards" class="button-nav" href="#rewards">REWARDS<div id="nav-rewards-underscore"></div></a>
         </nav>
     </header>
     <main>
@@ -72,202 +94,40 @@
             <a href="#puzzle" class="button button-big">Play</a>
         </div>
         <div id="main-rewards">
-            <h2 class="sticky">This week</h2>
-            <div class="reward-streakdates">
-                <div class="reward-streakbubbles"><div class="on"></div><p>M</p></div>
-                <div class="reward-streakbubbles"><div class="on"></div><p>T</p></div>
-                <div class="reward-streakbubbles"><div class="on"></div><p>W</p></div>
-                <div class="reward-streakbubbles"><div class="on"></div><p>T</p></div>
-                <div class="reward-streakbubbles"><div></div><p>F</p></div>
-                <div class="reward-streakbubbles"><div></div><p>S</p></div>
-                <div class="reward-streakbubbles"><div></div><p>S</p></div>
-            </div>
 
-            <div class="reward-stats">
-                <div class="reward-stat">
-                    <h2 class="colour">13</h2>
-                    <p>Coins</p>
+            <div class="reward-overview">
+                <h2 class="sticky">Overview</h2>
+                <div class="reward-streakdates">
+                    <div class="reward-streakbubbles"><div class="on"></div><p>M</p></div>
+                    <div class="reward-streakbubbles"><div class="on"></div><p>T</p></div>
+                    <div class="reward-streakbubbles"><div class="on"></div><p>W</p></div>
+                    <div class="reward-streakbubbles"><div class="on"></div><p>T</p></div>
+                    <div class="reward-streakbubbles"><div></div><p>F</p></div>
+                    <div class="reward-streakbubbles"><div></div><p>S</p></div>
+                    <div class="reward-streakbubbles"><div></div><p>S</p></div>
                 </div>
-                <div class="reward-stat">
-                    <h2 class="colour">4</h2>
-                    <p>Streak</p>
-                </div>
-                <div class="reward-stat">
-                    <h2 class="colour">6</h2>
-                    <p>Max streak</p>
-                </div>
-                <div class="reward-stat">
-                    <h2 class="colour">34</h2>
-                    <p>Total games</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <h2 class="sticky">Tips</h2>
-            <div class="reward-tips">
-                <div class="reward-tip">
-                    <div class="block-row-container">
-                        <div class="puzzle-sample reward-tip-pic">
-                            <div class="puzzle-sample-grid">
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                            </div>
-                            <div class="puzzle-rook" style="top:60px;left:20px;width:40px;"></div>
-                            <div class="puzzle-piece" style="top:20px;left:20px;width:40px;"></div>
-                            <div class="puzzle-piece" style="top:100px;left:20px;width:40px;"></div>
-                        </div>
-                        <div class="puzzle-sample reward-tip-pic">
-                            <div class="puzzle-sample-grid">
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                            </div>
-                            <div class="puzzle-rook" style="top:20px;left:20px;width:40px;"></div>
-                            <div class="puzzle-piece" style="top:100px;left:20px;width:40px;"></div>
-                            <div class="puzzle-trail puzzle-trail-up" style="top:60px;left:20px;height:40px;"></div>
-                        </div>
-                        <div class="puzzle-sample reward-tip-pic">
-                            <div class="puzzle-sample-grid">
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                                <div class="puzzle-sample-row">
-                                    <div class="puzzle-sample-cell"></div>
-                                </div>
-                            </div>
-                            <div class="puzzle-rook" style="top:100px;left:20px;width:40px;"></div>
-                            <div class="puzzle-trail puzzle-trail-down" style="top:20px;left:20px;height:80px;"></div>
-                        </div>
+                <div class="reward-stats">
+                    <div class="reward-stat">
+                        <h2 class="colour">13</h2>
+                        <p>Coins</p>
                     </div>
-                    <h2>Reversing</h2>
-                    <p>Here the rook can reverse direction, capturing both pawns. However, rooks cannot jump.</p>
-                </div>
-                <div class="reward-tip">
-                    <div class="puzzle-sample reward-tip-pic">
-                        <div class="puzzle-sample-grid">
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                        </div>
-                        <div class="puzzle-rook" style="top:20px;left:60px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:20px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:60px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:140px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:100px;left:140px;width:40px;"></div>
-                        <div class="puzzle-trail puzzle-trail-right" style="top:60px;left:20px;width:120px;"></div>
+                    <div class="reward-stat">
+                        <h2 class="colour">4</h2>
+                        <p>Streak</p>
                     </div>
-                    <h2>3 in a row</h2>
-                    <p>Whenever three or more pieces are in a row, a decision is required. Choose carefully.</p>
-                </div>
-                <div class="reward-tip">
-                    <div class="puzzle-sample reward-tip-pic">
-                        <div class="puzzle-sample-grid">
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                        </div>
-                        <div class="puzzle-piece" style="top:60px;left:20px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:60px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:100px;left:60px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:100px;left:100px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:100px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:20px;left:100px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:20px;left:140px;width:40px;"></div>
-                        <div class="puzzle-highlighter" style="top:20px;left:140px;width:40px;"></div>
-                        <div class="puzzle-trail puzzle-trail-right" style="top:20px;left:100px;width:40px;"></div>
+                    <div class="reward-stat">
+                        <h2 class="colour">6</h2>
+                        <p>Max streak</p>
                     </div>
-                    <h2>Last pawn</h2>
-                    <p>The pawn connected to only one other pawn is the last to be captured.</p>
-                </div>
-                <div class="reward-tip">
-                    <div class="puzzle-sample reward-tip-pic">
-                        <div class="puzzle-sample-grid">
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                            <div class="puzzle-sample-row">
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                                <div class="puzzle-sample-cell"></div>
-                            </div>
-                        </div>
-                        <div class="puzzle-piece" style="top:60px;left:20px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:60px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:100px;left:60px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:100px;left:100px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:60px;left:100px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:20px;left:100px;width:40px;"></div>
-                        <div class="puzzle-piece" style="top:20px;left:140px;width:40px;"></div>
-                        <div class="puzzle-highlighter" style="top:60px;left:20px;width:40px;"></div>
-                        <div class="puzzle-trail puzzle-trail-left" style="top:60px;left:100px;width:80px;"></div>
+                    <div class="reward-stat">
+                        <h2 class="colour">34</h2>
+                        <p>Total games</p>
                     </div>
-                    <h2>False finish</h2>
-                    <p>This pawn may not be the last pawn, as the rook can reverse direction to capture more.</p>
                 </div>
             </div>
 
-            
-            <hr>
-
-            <h2 class="sticky">Settings</h2>
             <div class="reward-settings">
+                <h2 class="sticky">Settings</h2>
                 <label onclick="toggleDarkMode();">
                     <div class="input-checkbox">
                         <input id="input-dark" class="input-checkbox-clicker" type="checkbox">
@@ -285,6 +145,7 @@
             </div>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
+    <script src="/darkmode.js"></script>
 </body>
 </html>
